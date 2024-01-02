@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/testexamm.github.io/static/css/main.43d74cef.css",
+    "main.js": "/testexamm.github.io/static/js/main.85b0c1a3.js",
+    "static/js/411.c7b14d44.chunk.js": "/testexamm.github.io/static/js/411.c7b14d44.chunk.js",
+    "static/css/363.430fa724.chunk.css": "/testexamm.github.io/static/css/363.430fa724.chunk.css",
+    "static/js/363.ca4112e2.chunk.js": "/testexamm.github.io/static/js/363.ca4112e2.chunk.js",
+    "static/media/1.png": "/testexamm.github.io/static/media/1.c5a87f35170d0927cad8.png",
+    "index.html": "/testexamm.github.io/index.html",
+    "main.43d74cef.css.map": "/testexamm.github.io/static/css/main.43d74cef.css.map",
+    "main.85b0c1a3.js.map": "/testexamm.github.io/static/js/main.85b0c1a3.js.map",
+    "411.c7b14d44.chunk.js.map": "/testexamm.github.io/static/js/411.c7b14d44.chunk.js.map",
+    "363.430fa724.chunk.css.map": "/testexamm.github.io/static/css/363.430fa724.chunk.css.map",
+    "363.ca4112e2.chunk.js.map": "/testexamm.github.io/static/js/363.ca4112e2.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.43d74cef.css",
+    "static/js/main.85b0c1a3.js"
+  ]
+}
