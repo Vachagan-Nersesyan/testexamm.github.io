@@ -2,7 +2,7 @@
   "short_name": "ExmTest",
   "name": "exam test",
   "icons": [],
-  "start_url": ".",
+  "start_url": "https://vachagan-nersesyan.github.io/testexamm.github.io",
   "display": "standalone",
   "theme_color": "#000000",
   "background_color": "#ffffff"
