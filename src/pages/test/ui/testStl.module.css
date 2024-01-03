@@ -1,0 +1,73 @@
+.test_content {
+    width: 100%;
+    min-height: 100vh;
+    position: relative;
+}
+
+.test_content_container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fbd7db;
+    padding: 2em;
+}
+
+.test_content_title {
+    font-family: 'Noto Sans Armenian', sans-serif;
+    margin-bottom: 1em;
+    font-weight: 800;
+    color: #fb1154;
+    text-align: center;
+}
+
+.test_content_inp_content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.test_content_inp_content_item {
+    width: 100%;
+    margin-bottom: .6em;
+}
+
+.test_content_inp_content_item_title {
+    font-family: 'Noto Sans Armenian', sans-serif;
+    margin-bottom: .2em;
+    font-weight: 800;
+    font-size: .8em;
+    text-align: center;
+}
+
+.test_content_inp_content_item_inp {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.test_content_inp_content_item_inp input {
+    width: 10%;
+    border: 2px solid #fb1154;
+    font-family: 'Noto Sans Armenian', sans-serif;
+    font-weight: 800;
+    outline: none;
+}
+
+.test_content_inp_content_btn button {
+    font-family: 'Noto Sans Armenian', sans-serif;
+    padding: .5em 1em;
+    font-weight: 700;
+    outline: none;
+    border: 2px solid black;
+    cursor: pointer;
+    transition: .3s ease-in-out;
+    color: black;
+    background-color: transparent;
+}
+
+.test_content_inp_content_btn button:hover {
+    background-color: black;
+    color: #fbd7db;
+}

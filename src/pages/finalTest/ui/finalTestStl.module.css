@@ -33,14 +33,24 @@
     width: 30%;
 }
 
+.test_content_first_content_1_1 input {
+    font-family: 'Noto Sans Armenian', sans-serif;
+    padding: .3em;
+    outline: none;
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid #231f20;
+}
+
 .test_content_first_content_1_1 {
     padding-left: 1em;
     font-size: .8em;
     font-family: 'Noto Sans Armenian', sans-serif;
     font-weight: 700;
+    margin-bottom: .5em;
 }
 
-.test_content_first_content_1_1 span {
+.test_content_first_content_1_1_num {
     font-size: 1.3em;
 }
 
@@ -255,9 +265,10 @@ input[type="number"] {
     margin-right: .1em;
 }
 
+/* 
 .test_content_third_content_2_1_2_1 input {
     padding-top: 1em;
-}
+} */
 
 .test_content_third_content_3 {
     padding: .4em 1em .7em 0;
@@ -381,31 +392,38 @@ input[type="radio"]:checked:after {
 }
 
 .test_content_third_content_4 {
-    border-bottom: 1px dotted black;
-    display: flex;
+    /* border-bottom: 1px dotted black; */
+    /* display: flex;
     justify-content: flex-end;
-    align-items: center;
+    align-items: center; */
+    border-bottom: 1px dotted black;
+    /* border-left: 1px dotted black; */
+    border-right: 1px dotted black;
     flex-direction: column;
     margin-right: 1em;
-    width: 30%;
+    /* width: 30%; */
+    padding: 1em 0.5em 1em 0;
     /* height: 9em; */
 }
 
 .test_content_third_content_4_1 {
     display: flex;
     padding: 0 .5em;
+    border-right: 1px dotted black;
 }
 
 .test_content_third_content_4_1_overlay {
-    border-right: 1px dotted black;
-    padding-right: 1em;
-    padding-top: 1em;
+    /* border-right: 1px dotted black; */
+    /* padding-right: 1em;
+    padding-top: 1em; */
+    padding: 1em 1em 1em 0;
 }
 
 .test_content_third_content_4_1_1 {
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-bottom: .4em;
 }
 
 .test_content_third_content_4_1_1_1 {
@@ -413,6 +431,7 @@ input[type="radio"]:checked:after {
     font-weight: 700;
     margin-right: .4em;
     padding-bottom: .3em;
+    min-width: 11px;
 }
 
 .test_content_third_content_4_1_1_2 {
@@ -461,10 +480,6 @@ input[type="radio"]:checked:after {
     align-items: center;
 }
 
-.test_content_third_content_6_1_1_2_1 span input {
-    width: 1em;
-    margin-right: .2em;
-}
 
 .test_content_third_content_6_1_1_2_1_1_2 {
     font-size: 1em;
@@ -497,7 +512,7 @@ input[type="radio"]:checked:after {
     color: white;
     font-style: italic;
     margin-right: 3em;
-    transform: translateY(-.7em);
+    transform: translateY(-1.7em);
     text-align: center;
 }
 
@@ -524,6 +539,8 @@ input[type="radio"]:checked:after {
 .ss {
     display: flex;
     flex-flow: row wrap;
+    justify-content: space-evenly;
+    padding-bottom: 2em;
 }
 
 .test_content_third_content_3_ovrld {
@@ -546,4 +563,100 @@ input[type="radio"]:checked:after {
 .test_content_third_content_3_content_d_item {
     display: flex;
     flex-flow: row wrap;
+    justify-content: center;
+}
+
+.test_content_third_content_6_1_1 {
+    display: flex;
+}
+
+.test_content_third_content_6_1_2_1 {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.test_content_third_content_6_1_2_33 {
+    display: flex;
+    /* margin: 1em; */
+    /* width: 20%; */
+    /* border-bottom: 1px dotted black; */
+    padding: 1em;
+}
+
+.test_content_third_content_6_1 {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+}
+
+.test_content_third_content_4_b {
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    /* border-left: 1px dotted black; */
+    border-bottom: 1px dotted black;
+    flex-direction: column;
+    margin-right: 1em;
+    width: 23%;
+    display: flex;
+    justify-content: flex-end;
+    padding: 1em 0;
+}
+
+.test_content_third_content_4_1_b {
+    display: flex;
+    padding: 0 0.5em;
+}
+
+.txtinp {
+    width: .9em;
+}
+
+.txtinpsec {
+    width: .9em;
+}
+
+
+.test_content_third_content_4_1_1_2_1_sec {
+    margin-right: .2em;
+}
+
+
+.test_content_third_content_4_1_1_2_1_thrid {
+    margin-right: .4em;
+    display: flex;
+}
+
+
+.test_content_third_content_4_1_1_2_1_thrid_item input {
+    width: 1.2em;
+    height: 1.4em;
+    margin-right: .2em;
+
+}
+
+.test_content_third_content_4_1_1_2_1_thrid_ittm {
+    margin-right: .2em;
+}
+
+.test_content_third_content_4_1_2_1_1_sec {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    padding-left: 3em;
+}
+
+.test_content_third_content_4_1_2_1_1_1_1_sec {
+    font-family: 'Noto Sans Armenian', sans-serif;
+    padding: 0 0.4em;
+    font-weight: 700;
+    font-size: .8em;
+}
+
+
+@media print {
+    .printPart {
+        display: none;
+    }
 }

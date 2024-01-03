@@ -39,69 +39,109 @@ export const TestComp: React.FC<OwnProps> = () => {
     }
 
     return (
-        <div>
-            <div>
-                <div>
-                    yntrovi patasxanov arajadranqner
+        <div className={styles.test_content}>
+            <div className={styles.test_content_container}>
+                <div className={styles.test_content_title}>
+                    Խնդրում ենք լրացրեք դաշտերը
                 </div>
-                <input type="number" name='chooseAnswerQuest' onChange={handleInputChange} />
-            </div>
-            <div>
-                <div>
-                    karch patasxanov arajadranqner
-                </div>
-                <input type="number" name='shortAnswerQuest' onChange={handleInputChange} />
-            </div>
-            <div>
-                <div>
-                    karch patasxanov arajadranqner b
-                </div>
-                <input type="number" name='shortAnswerBQuest' onChange={handleInputChange} />
-            </div>
+                <div className={styles.test_content_inp_content}>
+                    <div className={styles.test_content_inp_content_item}>
+                        <div className={styles.test_content_inp_content_item_title}>
+                            Խնդրում ենք նշեք ընտրովի պատասխանների քանակը
+                        </div>
+                        <div className={styles.test_content_inp_content_item_inp}>
+                            <input type="number" name='chooseAnswerQuest' onChange={handleInputChange} />
+                        </div>
+                    </div>
+                    <div className={styles.test_content_inp_content_item}>
+                        <div className={styles.test_content_inp_content_item_title}>
+                            Խնդրում ենք նշեք կարճ պատասխանների քանակը
+                        </div>
+                        <div className={styles.test_content_inp_content_item_inp}>
+
+                            <input type="number" name='shortAnswerQuest' onChange={handleInputChange} />
+                        </div>
+                    </div>
+                    <div className={styles.test_content_inp_content_item}>
+                        <div className={styles.test_content_inp_content_item_title}>
+                            Խնդրում ենք նշեք կարճ և տարբերակներով պատասխանների քանակը
+
+                        </div>
+                        <div className={styles.test_content_inp_content_item_inp}>
+
+                            <input type="number" name='shortAnswerBQuest' onChange={handleInputChange} />
+                        </div>
+                    </div>
 
 
 
-            <div>
-                <div>
-                    yntrovi patasxanov arajadranqner b
-                </div>
-                <input type="number" name='chooseAnswerBQuest' onChange={handleInputChange} />
-            </div>
+                    <div className={styles.test_content_inp_content_item}>
+                        <div className={styles.test_content_inp_content_item_title}>
+                            Խնդրում ենք նշեք ընտրովի պատասխանների քանակը
 
-            <div>
-                <div>
-                    karch patasxanov arajadranqner c
-                </div>
-                <input type="number" name='shortAnswerCQuest' onChange={handleInputChange} />
-            </div>
-            <div>
-                <div>
-                    karch patasxanov arajadranqner d
-                </div>
-                <input type="number" name='shortAnswerDQuest' onChange={handleInputChange} />
-            </div>
-            <div>
-                <div>
-                    karch patasxanov arajadranqner e
-                </div>
-                <input type="number" name='shortAnswerEQuest' onChange={handleInputChange} />
-            </div>
+                        </div>
+                        <div className={styles.test_content_inp_content_item_inp}>
 
-            <div>
-                <div>
-                    wrong yntrovi patasxanov arajadranqner
-                </div>
-                <input type="number" name='wrongChooseAnswerQuest' onChange={handleInputChange} />
-            </div>
+                            <input type="number" name='chooseAnswerBQuest' onChange={handleInputChange} />
+                        </div>
+                    </div>
 
-            <div>
-                <div>
-                    wrong  karch patasxanov arajadranqner
-                </div>
-                <input type="number" name='wrongShortAnswerQuest' onChange={handleInputChange} />
-            </div>
+                    <div className={styles.test_content_inp_content_item}>
+                        <div className={styles.test_content_inp_content_item_title}>
+                            Խնդրում ենք նշեք կարճ պատասխանների քանակը
 
-            <button type='submit' onClick={chosenAnswerQuestionAnswerCompFunc}>Send</button>
+                        </div>
+                        <div className={styles.test_content_inp_content_item_inp}>
+
+                            <input type="number" name='shortAnswerCQuest' onChange={handleInputChange} />
+                        </div>
+                    </div>
+                    <div className={styles.test_content_inp_content_item}>
+                        <div className={styles.test_content_inp_content_item_title}>
+                            Խնդրում ենք նշեք կարճ և տարբերակներով պատասխանների քանակը
+
+                        </div>
+                        <div className={styles.test_content_inp_content_item_inp}>
+
+                            <input type="number" name='shortAnswerDQuest' onChange={handleInputChange} />
+                        </div>
+                    </div>
+                    <div className={styles.test_content_inp_content_item}>
+                        <div className={styles.test_content_inp_content_item_title}>
+                            Խնդրում ենք նշեք ընտրովի սխալ պատասխանների քանակը
+                        </div>
+                        <div className={styles.test_content_inp_content_item_inp}>
+
+                            <input type="number" name='shortAnswerEQuest' onChange={handleInputChange} />
+                        </div>
+                    </div>
+
+                    <div className={styles.test_content_inp_content_item}>
+                        <div className={styles.test_content_inp_content_item_title}>
+                            Խնդրում ենք նշեք կարճ սխալ պատասխանների քանակը
+                        </div>
+                        <div className={styles.test_content_inp_content_item_inp}>
+
+                            <input type="number" name='wrongChooseAnswerQuest' onChange={handleInputChange} />
+                        </div>
+                    </div>
+
+                    <div className={styles.test_content_inp_content_item}>
+                        <div className={styles.test_content_inp_content_item_title}>
+                            Խնդրում ենք նշեք կարճ և տարբերակներով սխալ պատասխանների քանակը
+                        </div>
+                        <div className={styles.test_content_inp_content_item_inp}>
+
+                            <input type="number" name='wrongShortAnswerQuest' onChange={handleInputChange} />
+                        </div>
+                    </div>
+
+                    <div className={styles.test_content_inp_content_btn}>
+                        <button type='submit' onClick={chosenAnswerQuestionAnswerCompFunc}>Send</button>
+
+                    </div>
+                </div>
+            </div>
         </div>
     )
 }

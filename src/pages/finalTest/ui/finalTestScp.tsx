@@ -80,10 +80,18 @@ const FinalTestComp: React.FC<OwnProps> = () => {
     let lastSixthIndex = 0
 
 
-    const infoSeventhSettings = Math.ceil(Number(chAnsQuestCountItem.shortAnswerEQuest) / 3)
+    const infoSeventhSettings = Math.ceil(Number(chAnsQuestCountItem.shortAnswerEQuest) / 10)
     let isSeventhLoopEnd = false
     let lastSeventhIndex = 0
 
+    const infoEightSettings = Math.ceil(Number(chAnsQuestCountItem.wrongChooseAnswerQuest) / 3)
+    let isEightLoopEnd = false
+    let lastEightIndex = 0
+
+
+    const infoNinethSettings = Math.ceil(Number(chAnsQuestCountItem.wrongShortAnswerQuest) / 3)
+    let isNinethLoopEnd = false
+    let lastNinethIndex = 0
 
 
     // dd start
@@ -105,6 +113,7 @@ const FinalTestComp: React.FC<OwnProps> = () => {
 
 
 
+    // console.log(infoSeventhSettings, chAnsQuestCountItem.shortAnswerEQuest, 'infoSeventhSettingsinfoSeventhSettings')
 
     // console.log(infoSttngs, Math.ceil(Number(chAnsQuestCountItem.chooseAnswerQuest) / 19), 'infoSttngsinfoSttngsinfoSttngs')
     // console.log(chAnsQuestCountItem.chooseAnswerQuest, infoSttngs.toFixed(1)[infoSttngs.toFixed(1).length - 1], 'chAnsQuestCountItem.chooseAnswerQuest')
@@ -128,6 +137,17 @@ const FinalTestComp: React.FC<OwnProps> = () => {
 
     // console.log(infoThirdSettings, 'dddd')
 
+    let countBg = 0
+
+
+
+    const printFunc = () => {
+        window.print()
+    }
+
+
+
+
     return (
         <div className={styles.test_content_overlay}>
             <div className={styles.test_content}>
@@ -135,7 +155,7 @@ const FinalTestComp: React.FC<OwnProps> = () => {
                     <div className={styles.test_content_first_content}>
                         <div className={styles.test_content_first_content_1}>
                             <div className={styles.test_content_first_content_1_1}>
-                                <span>2017</span>թ․ միասնական քննություն
+                                <span className={styles.test_content_first_content_1_1_num}>2017</span>թ․ <input /> քննություն
                             </div>
                             <div className={styles.test_content_first_content_1_2}>
                                 <span>Պատասխանների ձևաթուղթ</span>
@@ -172,31 +192,42 @@ const FinalTestComp: React.FC<OwnProps> = () => {
                             <div className={styles.test_content_first_content_2_1}></div>
                             <div className={styles.test_content_first_content_2_2}>
                                 <div className={styles.test_content_first_content_2_2_1}>
-                                    <input type="number" name='num1' id="quantity" value={inputValues.num1} onChange={handleChange('num1')} min="0" max="9" />
+                                    <div className={styles.test_content_third_content_4_1_1_2_1_thrid_item}>
+                                        <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
+                                    </div>
                                 </div>
 
                                 <div className={styles.test_content_first_content_2_2_1}>
-                                    <input type="number" name='num2' id="quantity" value={inputValues.num2} onChange={handleChange('num2')} min="0" max="9" />
-
+                                    <div className={styles.test_content_third_content_4_1_1_2_1_thrid_item}>
+                                        <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
+                                    </div>
                                 </div>
 
                                 <div className={styles.test_content_first_content_2_2_1}>
-                                    <input type="number" name='num3' id="quantity" value={inputValues.num3} onChange={handleChange('num3')} min="0" max="9" />
-
-                                </div>
-
-                                <div className={styles.test_content_first_content_2_2_1}>
-                                    <input type="number" name='num4' id="quantity" value={inputValues.num4} onChange={handleChange('num4')} min="0" max="9" />
-
-                                </div>
-
-                                <div className={styles.test_content_first_content_2_2_1}>
-                                    <input type="number" name='num5' id="quantity" value={inputValues.num5} onChange={handleChange('num5')} min="0" max="9" />
+                                    <div className={styles.test_content_third_content_4_1_1_2_1_thrid_item}>
+                                        <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
+                                    </div>
 
                                 </div>
 
                                 <div className={styles.test_content_first_content_2_2_1}>
-                                    <input type="number" name='num6' id="quantity" value={inputValues.num6} onChange={handleChange('num6')} min="0" max="9" />
+                                    <div className={styles.test_content_third_content_4_1_1_2_1_thrid_item}>
+                                        <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
+                                    </div>
+
+                                </div>
+
+                                <div className={styles.test_content_first_content_2_2_1}>
+                                    <div className={styles.test_content_third_content_4_1_1_2_1_thrid_item}>
+                                        <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
+                                    </div>
+
+                                </div>
+
+                                <div className={styles.test_content_first_content_2_2_1}>
+                                    <div className={styles.test_content_third_content_4_1_1_2_1_thrid_item}>
+                                        <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
+                                    </div>
 
                                 </div>
                             </div>
@@ -278,19 +309,19 @@ const FinalTestComp: React.FC<OwnProps> = () => {
                                 <div className={styles.test_content_third_content_2_1_2}>
                                     <div className={styles.test_content_third_content_2_1_2_1}>
                                         <span>1</span>
-                                        <input type="checkbox" />
+                                        <input type="radio" name='short1' />
                                     </div>
                                     <div className={styles.test_content_third_content_2_1_2_1}>
                                         <span>2</span>
-                                        <input type="checkbox" />
+                                        <input type="radio" name='short1' />
                                     </div>
                                     <div className={styles.test_content_third_content_2_1_2_1}>
                                         <span>3</span>
-                                        <input type="checkbox" />
+                                        <input type="radio" name='short1' />
                                     </div>
                                     <div className={styles.test_content_third_content_2_1_2_1}>
                                         <span>4</span>
-                                        <input type="checkbox" />
+                                        <input type="radio" name='short1' />
                                     </div>
                                 </div>
                             </div>
@@ -339,10 +370,11 @@ const FinalTestComp: React.FC<OwnProps> = () => {
                                                                     lastIndex = ind
                                                                     return null
                                                                 } else {
+                                                                    countBg += 1
                                                                     return (
                                                                         <div key={ind} className={styles.test_content_third_content_3_2_3_1}>
                                                                             <div className={styles.test_content_third_content_3_2_3_1_1}>
-                                                                                {ind + 1}
+                                                                                {countBg}
                                                                             </div>
                                                                             <div className={styles.test_content_third_content_3_2_3_1_2}>
                                                                                 <form action="">
@@ -409,7 +441,7 @@ const FinalTestComp: React.FC<OwnProps> = () => {
                                                         {/* <div className={styles.test_content_third_content_3_title}>
                                                     Կարճ պատասխանով առաջադրանքներ
                                                 </div> */}
-                                                        <div className={styles.test_content_third_content_4_1}>
+                                                        <div className={styles.test_content_third_content_4_1_b}>
                                                             <div className={styles.test_content_third_content_4_1_overlay}>
                                                                 {
                                                                     [...new Array(Number(chAnsQuestCountItem.shortAnswerQuest))].map((val1, ind1) => {
@@ -420,10 +452,11 @@ const FinalTestComp: React.FC<OwnProps> = () => {
                                                                                 lastSecIndex = ind1
                                                                                 return null
                                                                             } else {
+                                                                                countBg += 1
                                                                                 return (
                                                                                     <div key={ind} className={styles.test_content_third_content_4_1_1}>
                                                                                         <div className={styles.test_content_third_content_4_1_1_1}>
-                                                                                            {ind1}
+                                                                                            {countBg}
                                                                                         </div>
                                                                                         <div className={styles.test_content_third_content_4_1_1_2}>
                                                                                             <div className={styles.test_content_third_content_4_1_1_2_1}>
@@ -443,11 +476,12 @@ const FinalTestComp: React.FC<OwnProps> = () => {
                                                                                 )
                                                                             }
                                                                         } else if (ind1 === lastSecIndex) {
+                                                                            countBg += 1
                                                                             return (
                                                                                 (
                                                                                     <div key={ind} className={styles.test_content_third_content_4_1_1}>
                                                                                         <div className={styles.test_content_third_content_4_1_1_1}>
-                                                                                            {ind1}
+                                                                                            {countBg}
                                                                                         </div>
                                                                                         <div className={styles.test_content_third_content_4_1_1_2}>
                                                                                             <div className={styles.test_content_third_content_4_1_1_2_1}>
@@ -493,7 +527,7 @@ const FinalTestComp: React.FC<OwnProps> = () => {
                                                             {/* <div className={styles.test_content_third_content_3_title}>
                                                     Կարճ պատասխանով առաջադրանքներ
                                                 </div> */}
-                                                            <div className={styles.test_content_third_content_4_1}>
+                                                            <div className={styles.test_content_third_content_4_1_b}>
                                                                 <div className={styles.test_content_third_content_4_1_overlay}>
                                                                     {
                                                                         [...new Array(Number(chAnsQuestCountItem.shortAnswerQuest))].map((val1, ind1) => {
@@ -504,10 +538,11 @@ const FinalTestComp: React.FC<OwnProps> = () => {
                                                                                     lastSecIndex = ind1
                                                                                     return null
                                                                                 } else {
+                                                                                    countBg += 1
                                                                                     return (
                                                                                         <div key={ind} className={styles.test_content_third_content_4_1_1}>
                                                                                             <div className={styles.test_content_third_content_4_1_1_1}>
-                                                                                                {ind1}
+                                                                                                {countBg}
                                                                                             </div>
                                                                                             <div className={styles.test_content_third_content_4_1_1_2}>
                                                                                                 <div className={styles.test_content_third_content_4_1_1_2_1}>
@@ -527,11 +562,12 @@ const FinalTestComp: React.FC<OwnProps> = () => {
                                                                                     )
                                                                                 }
                                                                             } else if (ind1 === lastSecIndex) {
+                                                                                countBg += 1
                                                                                 return (
                                                                                     (
                                                                                         <div key={ind} className={styles.test_content_third_content_4_1_1}>
                                                                                             <div className={styles.test_content_third_content_4_1_1_1}>
-                                                                                                {ind1}
+                                                                                                {countBg}
                                                                                             </div>
                                                                                             <div className={styles.test_content_third_content_4_1_1_2}>
                                                                                                 <div className={styles.test_content_third_content_4_1_1_2_1}>
@@ -593,7 +629,7 @@ const FinalTestComp: React.FC<OwnProps> = () => {
                                                     {/* <div className={styles.test_content_third_content_3_title}>
                                                 Կարճ պատասխանով առաջադրանքներ
                                             </div>  */}
-                                                    <div className={styles.test_content_third_content_4_1}>
+                                                    <div className={styles.test_content_third_content_4_1_b}>
                                                         <div className={styles.test_content_third_content_4_1_overlay}>
                                                             {
                                                                 [...new Array(Number(chAnsQuestCountItem.shortAnswerQuest))].map((val1, ind1) => {
@@ -604,47 +640,62 @@ const FinalTestComp: React.FC<OwnProps> = () => {
                                                                             lastSecIndex = ind1
                                                                             return null
                                                                         } else {
+                                                                            countBg += 1
                                                                             return (
                                                                                 <div key={ind} className={styles.test_content_third_content_4_1_1}>
                                                                                     <div className={styles.test_content_third_content_4_1_1_1}>
-                                                                                        {ind1}
+                                                                                        {countBg}
                                                                                     </div>
                                                                                     <div className={styles.test_content_third_content_4_1_1_2}>
                                                                                         <div className={styles.test_content_third_content_4_1_1_2_1}>
-                                                                                            <input type="radio" name='short1' />
+                                                                                            <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
+
                                                                                         </div>
                                                                                         <div className={styles.test_content_third_content_4_1_1_2_1}>
-                                                                                            <input type="radio" name='short1' />
+                                                                                            <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
                                                                                         </div>
                                                                                         <div className={styles.test_content_third_content_4_1_1_2_1}>
-                                                                                            <input type="radio" name='short1' />
+                                                                                            <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
                                                                                         </div>
                                                                                         <div className={styles.test_content_third_content_4_1_1_2_1}>
-                                                                                            <input type="radio" name='short1' />
+                                                                                            <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
+                                                                                        </div>
+                                                                                        <div className={styles.test_content_third_content_4_1_1_2_1}>
+                                                                                            <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
+                                                                                        </div>
+                                                                                        <div className={styles.test_content_third_content_4_1_1_2_1}>
+                                                                                            <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
                                                                                         </div>
                                                                                     </div>
                                                                                 </div>
                                                                             )
                                                                         }
                                                                     } else if (ind1 === lastSecIndex) {
+                                                                        countBg += 1
                                                                         return (
                                                                             (
                                                                                 <div key={ind} className={styles.test_content_third_content_4_1_1}>
                                                                                     <div className={styles.test_content_third_content_4_1_1_1}>
-                                                                                        {ind1}
+                                                                                        {countBg}
                                                                                     </div>
                                                                                     <div className={styles.test_content_third_content_4_1_1_2}>
                                                                                         <div className={styles.test_content_third_content_4_1_1_2_1}>
-                                                                                            <input type="radio" name='short1' />
+                                                                                            <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
                                                                                         </div>
                                                                                         <div className={styles.test_content_third_content_4_1_1_2_1}>
-                                                                                            <input type="radio" name='short1' />
+                                                                                            <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
                                                                                         </div>
                                                                                         <div className={styles.test_content_third_content_4_1_1_2_1}>
-                                                                                            <input type="radio" name='short1' />
+                                                                                            <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
                                                                                         </div>
                                                                                         <div className={styles.test_content_third_content_4_1_1_2_1}>
-                                                                                            <input type="radio" name='short1' />
+                                                                                            <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
+                                                                                        </div>
+                                                                                        <div className={styles.test_content_third_content_4_1_1_2_1}>
+                                                                                            <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
+                                                                                        </div>
+                                                                                        <div className={styles.test_content_third_content_4_1_1_2_1}>
+                                                                                            <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
                                                                                         </div>
                                                                                     </div>
                                                                                 </div>
@@ -840,7 +891,7 @@ const FinalTestComp: React.FC<OwnProps> = () => {
                                     startSecIndex = 4 - (infoSecSettings - ((Math.floor((infoSecSettings - startSecIndexCount) / 4) * 4) + startSecIndexCount))
                                     isThirdLoopEnd = false
                                     return (
-                                        <div className={styles.test_content_third_content_4}>
+                                        <div className={styles.test_content_third_content_4_b}>
 
                                             <div className={styles.test_content_third_content_4_1_2}>
                                                 <div className={styles.test_content_third_content_4_1_2_1}>
@@ -869,48 +920,51 @@ const FinalTestComp: React.FC<OwnProps> = () => {
                                                                         lastThirdIndex = ind1
                                                                         return null
                                                                     } else {
+                                                                        countBg += 1
                                                                         return (
                                                                             <div key={ind1} className={styles.test_content_third_content_4_1_1}>
 
                                                                                 <div className={styles.test_content_third_content_4_1_1_1}>
-                                                                                    {ind1}
+                                                                                    {countBg}
                                                                                 </div>
                                                                                 <div className={styles.test_content_third_content_4_1_1_2}>
                                                                                     <div className={styles.test_content_third_content_4_1_1_2_1}>
-                                                                                        <input type="radio" name='short2' />
+                                                                                        <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
+                                                                                    </div>
+
+                                                                                    <div className={styles.test_content_third_content_4_1_1_2_1}>
+                                                                                        <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
                                                                                     </div>
                                                                                     <div className={styles.test_content_third_content_4_1_1_2_1}>
-                                                                                        <input type="radio" name='short2' />
+                                                                                        <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
                                                                                     </div>
                                                                                     <div className={styles.test_content_third_content_4_1_1_2_1}>
-                                                                                        <input type="radio" name='short2' />
-                                                                                    </div>
-                                                                                    <div className={styles.test_content_third_content_4_1_1_2_1}>
-                                                                                        <input type="radio" name='short2' />
+                                                                                        <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
                                                                         )
                                                                     }
                                                                 } else if (ind1 === lastThirdIndex) {
+                                                                    countBg += 1
                                                                     return (
                                                                         (
                                                                             <div key={ind} className={styles.test_content_third_content_4_1_1}>
                                                                                 <div className={styles.test_content_third_content_4_1_1_1}>
-                                                                                    {ind1}
+                                                                                    {countBg}
                                                                                 </div>
                                                                                 <div className={styles.test_content_third_content_4_1_1_2}>
                                                                                     <div className={styles.test_content_third_content_4_1_1_2_1}>
-                                                                                        <input type="radio" name='short1' />
+                                                                                        <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
                                                                                     </div>
                                                                                     <div className={styles.test_content_third_content_4_1_1_2_1}>
-                                                                                        <input type="radio" name='short1' />
+                                                                                        <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
                                                                                     </div>
                                                                                     <div className={styles.test_content_third_content_4_1_1_2_1}>
-                                                                                        <input type="radio" name='short1' />
+                                                                                        <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
                                                                                     </div>
                                                                                     <div className={styles.test_content_third_content_4_1_1_2_1}>
-                                                                                        <input type="radio" name='short1' />
+                                                                                        <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
@@ -966,7 +1020,7 @@ const FinalTestComp: React.FC<OwnProps> = () => {
                                     // debugger
                                     isThirdLoopEnd = false
                                     return (
-                                        <div className={styles.test_content_third_content_4}>
+                                        <div className={styles.test_content_third_content_4_b}>
 
                                             <div className={styles.test_content_third_content_4_1_2}>
                                                 <div className={styles.test_content_third_content_4_1_2_1}>
@@ -995,48 +1049,50 @@ const FinalTestComp: React.FC<OwnProps> = () => {
                                                                         lastThirdIndex = ind1
                                                                         return null
                                                                     } else {
+                                                                        countBg += 1
                                                                         return (
                                                                             <div key={ind1} className={styles.test_content_third_content_4_1_1}>
 
                                                                                 <div className={styles.test_content_third_content_4_1_1_1}>
-                                                                                    {ind1}
+                                                                                    {countBg}
                                                                                 </div>
                                                                                 <div className={styles.test_content_third_content_4_1_1_2}>
                                                                                     <div className={styles.test_content_third_content_4_1_1_2_1}>
-                                                                                        <input type="radio" name='short2' />
+                                                                                        <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
                                                                                     </div>
                                                                                     <div className={styles.test_content_third_content_4_1_1_2_1}>
-                                                                                        <input type="radio" name='short2' />
+                                                                                        <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
                                                                                     </div>
                                                                                     <div className={styles.test_content_third_content_4_1_1_2_1}>
-                                                                                        <input type="radio" name='short2' />
+                                                                                        <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
                                                                                     </div>
                                                                                     <div className={styles.test_content_third_content_4_1_1_2_1}>
-                                                                                        <input type="radio" name='short2' />
+                                                                                        <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
                                                                         )
                                                                     }
                                                                 } else if (ind1 === lastThirdIndex) {
+                                                                    countBg += 1
                                                                     return (
                                                                         (
                                                                             <div key={ind} className={styles.test_content_third_content_4_1_1}>
                                                                                 <div className={styles.test_content_third_content_4_1_1_1}>
-                                                                                    {ind1}
+                                                                                    {countBg}
                                                                                 </div>
                                                                                 <div className={styles.test_content_third_content_4_1_1_2}>
                                                                                     <div className={styles.test_content_third_content_4_1_1_2_1}>
-                                                                                        <input type="radio" name='short1' />
+                                                                                        <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
                                                                                     </div>
                                                                                     <div className={styles.test_content_third_content_4_1_1_2_1}>
-                                                                                        <input type="radio" name='short1' />
+                                                                                        <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
                                                                                     </div>
                                                                                     <div className={styles.test_content_third_content_4_1_1_2_1}>
-                                                                                        <input type="radio" name='short1' />
+                                                                                        <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
                                                                                     </div>
                                                                                     <div className={styles.test_content_third_content_4_1_1_2_1}>
-                                                                                        <input type="radio" name='short1' />
+                                                                                        <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
@@ -1083,7 +1139,7 @@ const FinalTestComp: React.FC<OwnProps> = () => {
 
                             {
                                 [...new Array(infoForthSettings)].map((val1, ind1) => {
-                                    debugger
+                                    // debugger
                                     isForthLoopEnd = false
                                     return (
                                         <div className={styles.test_content_third_content_3}>
@@ -1119,10 +1175,11 @@ const FinalTestComp: React.FC<OwnProps> = () => {
                                                                     lastForthIndex = ind
                                                                     return null
                                                                 } else {
+                                                                    countBg += 1
                                                                     return (
                                                                         <div key={ind} className={styles.test_content_third_content_3_2_3_1}>
                                                                             <div className={styles.test_content_third_content_3_2_3_1_1}>
-                                                                                {ind + 1}
+                                                                                {countBg}
                                                                             </div>
                                                                             <div className={styles.test_content_third_content_3_2_3_1_2}>
                                                                                 <form action="">
@@ -1167,7 +1224,7 @@ const FinalTestComp: React.FC<OwnProps> = () => {
                                     // debugger
                                     isFivthLoopEnd = false
                                     return (
-                                        <div className={styles.test_content_third_content_4}>
+                                        <div className={styles.test_content_third_content_4_b}>
                                             {
                                                 ind === 0 || ind % 2 === 0
                                                     ?
@@ -1179,7 +1236,7 @@ const FinalTestComp: React.FC<OwnProps> = () => {
                                                     </div>
                                             }
 
-                                            <div className={styles.test_content_third_content_4_1}>
+                                            <div className={styles.test_content_third_content_4_1_b}>
                                                 <div className={styles.test_content_third_content_4_1_overlay}>
                                                     {
                                                         [...new Array(Number(chAnsQuestCountItem.shortAnswerCQuest))].map((val1, ind1) => {
@@ -1190,47 +1247,61 @@ const FinalTestComp: React.FC<OwnProps> = () => {
                                                                     lastFivthIndex = ind1
                                                                     return null
                                                                 } else {
+                                                                    countBg += 1
                                                                     return (
                                                                         <div key={ind} className={styles.test_content_third_content_4_1_1}>
                                                                             <div className={styles.test_content_third_content_4_1_1_1}>
-                                                                                {ind1}
+                                                                                {countBg}
                                                                             </div>
                                                                             <div className={styles.test_content_third_content_4_1_1_2}>
                                                                                 <div className={styles.test_content_third_content_4_1_1_2_1}>
-                                                                                    <input type="radio" name='short1' />
+                                                                                    <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
                                                                                 </div>
                                                                                 <div className={styles.test_content_third_content_4_1_1_2_1}>
-                                                                                    <input type="radio" name='short1' />
+                                                                                    <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
                                                                                 </div>
                                                                                 <div className={styles.test_content_third_content_4_1_1_2_1}>
-                                                                                    <input type="radio" name='short1' />
+                                                                                    <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
                                                                                 </div>
                                                                                 <div className={styles.test_content_third_content_4_1_1_2_1}>
-                                                                                    <input type="radio" name='short1' />
+                                                                                    <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
+                                                                                </div>
+                                                                                <div className={styles.test_content_third_content_4_1_1_2_1}>
+                                                                                    <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
+                                                                                </div>
+                                                                                <div className={styles.test_content_third_content_4_1_1_2_1}>
+                                                                                    <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
                                                                                 </div>
                                                                             </div>
                                                                         </div>
                                                                     )
                                                                 }
                                                             } else if (ind1 === lastFivthIndex) {
+                                                                countBg += 1
                                                                 return (
                                                                     (
                                                                         <div key={ind} className={styles.test_content_third_content_4_1_1}>
                                                                             <div className={styles.test_content_third_content_4_1_1_1}>
-                                                                                {ind1}
+                                                                                {countBg}
                                                                             </div>
                                                                             <div className={styles.test_content_third_content_4_1_1_2}>
                                                                                 <div className={styles.test_content_third_content_4_1_1_2_1}>
-                                                                                    <input type="radio" name='short1' />
+                                                                                    <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
                                                                                 </div>
                                                                                 <div className={styles.test_content_third_content_4_1_1_2_1}>
-                                                                                    <input type="radio" name='short1' />
+                                                                                    <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
                                                                                 </div>
                                                                                 <div className={styles.test_content_third_content_4_1_1_2_1}>
-                                                                                    <input type="radio" name='short1' />
+                                                                                    <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
                                                                                 </div>
                                                                                 <div className={styles.test_content_third_content_4_1_1_2_1}>
-                                                                                    <input type="radio" name='short1' />
+                                                                                    <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
+                                                                                </div>
+                                                                                <div className={styles.test_content_third_content_4_1_1_2_1}>
+                                                                                    <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
+                                                                                </div>
+                                                                                <div className={styles.test_content_third_content_4_1_1_2_1}>
+                                                                                    <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
                                                                                 </div>
                                                                             </div>
                                                                         </div>
@@ -1253,7 +1324,7 @@ const FinalTestComp: React.FC<OwnProps> = () => {
                                     // debugger
                                     isSixthLoopEnd = false
                                     return (
-                                        <div className={styles.test_content_third_content_4}>
+                                        <div className={styles.test_content_third_content_4_b}>
                                             {
                                                 ind === 0 || ind % 2 === 0
                                                     ?
@@ -1291,48 +1362,50 @@ const FinalTestComp: React.FC<OwnProps> = () => {
                                                                         lastSixthIndex = ind1
                                                                         return null
                                                                     } else {
+                                                                        countBg += 1
                                                                         return (
                                                                             <div key={ind1} className={styles.test_content_third_content_4_1_1}>
 
                                                                                 <div className={styles.test_content_third_content_4_1_1_1}>
-                                                                                    {ind1}
+                                                                                    {countBg}
                                                                                 </div>
                                                                                 <div className={styles.test_content_third_content_4_1_1_2}>
                                                                                     <div className={styles.test_content_third_content_4_1_1_2_1}>
-                                                                                        <input type="radio" name='short2' />
+                                                                                        <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
                                                                                     </div>
                                                                                     <div className={styles.test_content_third_content_4_1_1_2_1}>
-                                                                                        <input type="radio" name='short2' />
+                                                                                        <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
                                                                                     </div>
                                                                                     <div className={styles.test_content_third_content_4_1_1_2_1}>
-                                                                                        <input type="radio" name='short2' />
+                                                                                        <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
                                                                                     </div>
                                                                                     <div className={styles.test_content_third_content_4_1_1_2_1}>
-                                                                                        <input type="radio" name='short2' />
+                                                                                        <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
                                                                         )
                                                                     }
                                                                 } else if (ind1 === lastSixthIndex) {
+                                                                    countBg += 1
                                                                     return (
                                                                         (
                                                                             <div key={ind} className={styles.test_content_third_content_4_1_1}>
                                                                                 <div className={styles.test_content_third_content_4_1_1_1}>
-                                                                                    {ind1}
+                                                                                    {countBg}
                                                                                 </div>
                                                                                 <div className={styles.test_content_third_content_4_1_1_2}>
                                                                                     <div className={styles.test_content_third_content_4_1_1_2_1}>
-                                                                                        <input type="radio" name='short1' />
+                                                                                        <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
                                                                                     </div>
                                                                                     <div className={styles.test_content_third_content_4_1_1_2_1}>
-                                                                                        <input type="radio" name='short1' />
+                                                                                        <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
                                                                                     </div>
                                                                                     <div className={styles.test_content_third_content_4_1_1_2_1}>
-                                                                                        <input type="radio" name='short1' />
+                                                                                        <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
                                                                                     </div>
                                                                                     <div className={styles.test_content_third_content_4_1_1_2_1}>
-                                                                                        <input type="radio" name='short1' />
+                                                                                        <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
@@ -1353,129 +1426,377 @@ const FinalTestComp: React.FC<OwnProps> = () => {
                                 })
                             }
 
+                            <div className={styles.test_content_third_content_6}>
+                                <div className={styles.test_content_third_content_3_title}>
+                                    Ամբողջ ձևաթղթում սխալ նշված պատասխանները փոխելու տեղը
+                                </div>
+                                <div className={styles.test_content_third_content_6_1}>
+                                    {
+                                        [...new Array(infoSeventhSettings)].map((val1, ind1) => {
+                                            // debugger
+                                            isSeventhLoopEnd = false
 
-                        </div>
+                                            return (
+                                                <div className={styles.test_content_third_content_6_1_1}>
+                                                    <div className={styles.test_content_third_content_6_1_1_2}>
 
-                    </div>
-                    {/* sixth part */}
-
-
-
-
-
-                    <div className={styles.test_content_third_content_6}>
-                        <div className={styles.test_content_third_content_3_title}>
-                            Ամբողջ ձևաթղթում սխալ նշված պատասխանները փոխելու տեղը
-                        </div>
-                        <div className={styles.test_content_third_content_6_1}>
-                            <div className={styles.test_content_third_content_6_1_1}>
-                                <div className={styles.test_content_third_content_6_1_1_2}>
-
-                                    <div className={styles.test_content_third_content_3}>
-                                        <div className={styles.test_content_third_content_3_2}>
-                                            <div className={styles.test_content_third_content_3_2_1}>
-                                                Ընտրովի պատասխան
-                                            </div>
-                                            <div className={styles.test_content_third_content_3_2_2}>
-                                                <span>a</span>
-                                                <span>b</span>
-                                                <span>c</span>
-                                                <span>d</span>
-                                            </div>
-                                            <div className={styles.test_content_third_content_6_1_1_2_1_1}>
-                                                {
-                                                    [...new Array(Number(chAnsQuestCountItem.shortAnswerEQuest))].map((val, ind) => {
-                                                        return (
-                                                            <div key={ind}>
-                                                                <div className={styles.test_content_third_content_6_1_1_2_1_1_1}>
-                                                                    <div className={styles.test_content_third_content_6_1_1_2_1}>
-                                                                        <span>
-                                                                            <input type="number" />
-                                                                        </span>
-                                                                        <span>
-                                                                            <input type="number" />
-                                                                        </span>
-                                                                    </div>
+                                                        <div className={styles.test_content_third_content_3}>
+                                                            <div className={styles.test_content_third_content_3_2}>
+                                                                <div className={styles.test_content_third_content_3_2_1}>
+                                                                    Ընտրովի պատասխան
                                                                 </div>
-                                                                <div className={styles.test_content_third_content_6_1_1_2_1_1_2}>
-                                                                    <div className={styles.test_content_third_content_3_2_3}>
-                                                                        <div className={styles.test_content_third_content_3_2_3_1}>
+                                                                <div className={styles.test_content_third_content_3_2_2}>
+                                                                    <span>a</span>
+                                                                    <span>b</span>
+                                                                    <span>c</span>
+                                                                    <span>d</span>
+                                                                </div>
+                                                                <div className={styles.test_content_third_content_6_1_1_2_1_1}>
 
-                                                                            <div className={styles.test_content_third_content_3_2_3_1_2}>
-                                                                                <form action="">
-                                                                                    <div className={styles.test_content_third_content_3_2_3_1_2_1}>
-                                                                                        <input type="radio" name='1' />
-                                                                                    </div>
-                                                                                    <div className={styles.test_content_third_content_3_2_3_1_2_1}>
-                                                                                        <input type="radio" name='1' />
-                                                                                    </div>
-                                                                                    <div className={styles.test_content_third_content_3_2_3_1_2_1}>
-                                                                                        <input type="radio" name='1' />
-                                                                                    </div>
-                                                                                    <div className={styles.test_content_third_content_3_2_3_1_2_1}>
-                                                                                        <input type="radio" name='1' />
-                                                                                    </div>
-                                                                                </form>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
+                                                                    {
+                                                                        [...new Array(Number(chAnsQuestCountItem.shortAnswerEQuest))].map((val, ind) => {
+
+                                                                            if (!isSeventhLoopEnd && ind > lastSeventhIndex || ind === 0 && ind1 === 0) {
+                                                                                // initialFIndex += 1
+                                                                                // debugger
+                                                                                if ((ind + 1) % 10 === 0) {
+                                                                                    isSeventhLoopEnd = true
+                                                                                    lastSeventhIndex = ind
+                                                                                    return null
+                                                                                } else {
+
+                                                                                    return (
+                                                                                        <div key={ind}>
+                                                                                            <div className={styles.test_content_third_content_6_1_1_2_1_1_1}>
+                                                                                                <div className={styles.test_content_third_content_6_1_1_2_1}>
+                                                                                                    <div className={styles.test_content_third_content_4_1_1_2_1_sec}>
+                                                                                                        <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
+                                                                                                    </div>
+                                                                                                    <div className={styles.test_content_third_content_4_1_1_2_1}>
+                                                                                                        <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            <div className={styles.test_content_third_content_6_1_1_2_1_1_2}>
+                                                                                                <div className={styles.test_content_third_content_3_2_3}>
+                                                                                                    <div className={styles.test_content_third_content_3_2_3_1}>
+
+                                                                                                        <div className={styles.test_content_third_content_3_2_3_1_2}>
+                                                                                                            <form action="">
+                                                                                                                <div className={styles.test_content_third_content_3_2_3_1_2_1}>
+                                                                                                                    <input type="radio" name='1' />
+                                                                                                                </div>
+                                                                                                                <div className={styles.test_content_third_content_3_2_3_1_2_1}>
+                                                                                                                    <input type="radio" name='1' />
+                                                                                                                </div>
+                                                                                                                <div className={styles.test_content_third_content_3_2_3_1_2_1}>
+                                                                                                                    <input type="radio" name='1' />
+                                                                                                                </div>
+                                                                                                                <div className={styles.test_content_third_content_3_2_3_1_2_1}>
+                                                                                                                    <input type="radio" name='1' />
+                                                                                                                </div>
+                                                                                                            </form>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+
+
+                                                                                    )
+                                                                                }
+                                                                            }
+                                                                        })
+                                                                    }
+
                                                                 </div>
                                                             </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            )
+                                        })
+                                    }
 
 
-                                                        )
-                                                    })
-                                                }
 
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className={styles.test_content_third_content_6_1_2}>
+
+
+
+
+
+
+
+
+
+
+                                    {
+                                        [...new Array(infoEightSettings)].map((val, ind) => {
+                                            // debugger
+                                            isEightLoopEnd = false
+                                            return (
+                                                <div className={styles.test_content_third_content_6_1_2_33}>
+                                                    {
+                                                        ind === 0
+                                                            ?
+                                                            <div className={styles.test_content_third_content_3_2_1}>
+                                                                Կարճ պատասխանով
+                                                            </div>
+                                                            :
+                                                            null
+                                                    }
+                                                    <div className={styles.test_content_third_content_4_1}>
+                                                        <div className={styles.test_content_third_content_4_1_overlay_ss}>
+                                                            {
+                                                                [...new Array(Number(chAnsQuestCountItem.wrongChooseAnswerQuest))].map((val, ind1) => {
+                                                                    if (!isEightLoopEnd && ind1 > lastEightIndex || ind === 0 && ind1 === 0) {
+                                                                        if (ind1 % 3 === 0 && ind1 !== 0) {
+                                                                            isEightLoopEnd = true
+                                                                            lastEightIndex = ind1
+                                                                            return null
+                                                                        } else {
+                                                                            return (
+                                                                                <div key={ind} className={styles.test_content_third_content_4_1_1}>
+                                                                                    <div className={styles.test_content_third_content_6_1_1_2_1_1_1}>
+                                                                                        <div className={styles.test_content_third_content_4_1_1_2_1_thrid}>
+                                                                                            <div className={styles.test_content_third_content_4_1_1_2_1_thrid_item}>
+                                                                                                <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
+                                                                                            </div>
+                                                                                            <div className={styles.test_content_third_content_4_1_1_2_1_thrid_item}>
+                                                                                                <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div className={styles.test_content_third_content_4_1_1_2}>
+                                                                                        <div className={styles.test_content_third_content_4_1_1_2_1_thrid_ittm}>
+                                                                                            <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
+                                                                                        </div>
+                                                                                        <div className={styles.test_content_third_content_4_1_1_2_1_thrid_ittm}>
+                                                                                            <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
+                                                                                        </div>
+                                                                                        <div className={styles.test_content_third_content_4_1_1_2_1_thrid_ittm}>
+                                                                                            <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
+                                                                                        </div>
+                                                                                        <div className={styles.test_content_third_content_4_1_1_2_1_thrid_ittm}>
+                                                                                            <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            )
+                                                                        }
+                                                                    } else if (ind1 === lastEightIndex) {
+                                                                        return (
+                                                                            (
+                                                                                <div key={ind} className={styles.test_content_third_content_4_1_1}>
+                                                                                    <div className={styles.test_content_third_content_6_1_1_2_1_1_1}>
+                                                                                        <div className={styles.test_content_third_content_4_1_1_2_1_thrid}>
+                                                                                            <div className={styles.test_content_third_content_4_1_1_2_1_thrid_item}>
+                                                                                                <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
+                                                                                            </div>
+                                                                                            <div className={styles.test_content_third_content_4_1_1_2_1_thrid_item}>
+                                                                                                <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div className={styles.test_content_third_content_4_1_1_2}>
+                                                                                        <div className={styles.test_content_third_content_4_1_1_2_1_thrid_ittm}>
+                                                                                            <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
+                                                                                        </div>
+                                                                                        <div className={styles.test_content_third_content_4_1_1_2_1_thrid_ittm}>
+                                                                                            <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
+                                                                                        </div>
+                                                                                        <div className={styles.test_content_third_content_4_1_1_2_1_thrid_ittm}>
+                                                                                            <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
+                                                                                        </div>
+                                                                                        <div className={styles.test_content_third_content_4_1_1_2_1_thrid_ittm}>
+                                                                                            <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            )
+                                                                        )
+                                                                    }
+                                                                })
+                                                            }
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            )
+                                        })
+                                    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                    {
+                                        [...new Array(infoNinethSettings)].map((val, ind) => {
+                                            // debugger
+                                            isNinethLoopEnd = false
+                                            return (
+                                                <div className={styles.test_content_third_content_4}>
+                                                    {/* {
+                                                ind === 0 || ind % 2 === 0
+                                                    ?
+                                                    <div className={styles.test_content_third_content_3_title}>
+                                                        Կարճ պատասխանով առաջադրանքներ
+                                                    </div>
+                                                    :
+                                                    <div>
+                                                    </div>
+                                            } */}
+                                                    <div className={styles.test_content_third_content_4_1_2}>
+                                                        <div className={styles.test_content_third_content_4_1_2_1}>
+                                                            <div className={styles.test_content_third_content_4_1_2_1_1_sec}>
+                                                                {/* <div className={styles.test_content_third_content_4_1_2_1_1_1}></div> */}
+                                                                <div className={styles.test_content_third_content_4_1_2_1_1_1_1_sec}>
+                                                                    A
+                                                                </div>
+                                                                <div className={styles.test_content_third_content_4_1_2_1_1_1_1_sec}>
+                                                                    B
+                                                                </div>
+                                                                <div className={styles.test_content_third_content_4_1_2_1_1_1_1_sec}>
+                                                                    C
+                                                                </div>
+                                                                <div className={styles.test_content_third_content_4_1_2_1_1_1_1_sec}>
+                                                                    D
+                                                                </div>
+                                                            </div>
+                                                            <div className={styles.test_content_third_content_4_1_2_1_2}>
+                                                                {
+                                                                    [...new Array(Number(chAnsQuestCountItem.wrongShortAnswerQuest))].map((va1l, ind1) => {
+
+                                                                        if (!isNinethLoopEnd && ind1 > lastNinethIndex || ind === 0 && ind1 === 0) {
+                                                                            if (ind1 % 3 === 0 && ind1 !== 0) {
+                                                                                isNinethLoopEnd = true
+                                                                                lastNinethIndex = ind1
+                                                                                return null
+                                                                            } else {
+                                                                                return (
+                                                                                    <div key={ind} className={styles.test_content_third_content_4_1_1}>
+
+                                                                                        <div className={styles.test_content_third_content_6_1_1_2_1_1_1}>
+                                                                                            <div className={styles.test_content_third_content_4_1_1_2_1_thrid}>
+                                                                                                <div className={styles.test_content_third_content_4_1_1_2_1_thrid_item}>
+                                                                                                    <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
+                                                                                                </div>
+                                                                                                <div className={styles.test_content_third_content_4_1_1_2_1_thrid_item}>
+                                                                                                    <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div className={styles.test_content_third_content_4_1_1_2}>
+                                                                                            <div className={styles.test_content_third_content_4_1_1_2_1_thrid_ittm}>
+                                                                                                <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
+                                                                                            </div>
+                                                                                            <div className={styles.test_content_third_content_4_1_1_2_1_thrid_ittm}>
+                                                                                                <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
+                                                                                            </div>
+                                                                                            <div className={styles.test_content_third_content_4_1_1_2_1_thrid_ittm}>
+                                                                                                <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
+                                                                                            </div>
+                                                                                            <div className={styles.test_content_third_content_4_1_1_2_1_thrid_ittm}>
+                                                                                                <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                )
+                                                                            }
+                                                                        } else if (ind1 === lastNinethIndex) {
+                                                                            return (
+                                                                                (
+                                                                                    <div key={ind} className={styles.test_content_third_content_4_1_1}>
+
+                                                                                        <div className={styles.test_content_third_content_6_1_1_2_1_1_1}>
+                                                                                            <div className={styles.test_content_third_content_4_1_1_2_1_thrid}>
+                                                                                                <div className={styles.test_content_third_content_4_1_1_2_1_thrid_item}>
+                                                                                                    <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
+                                                                                                </div>
+                                                                                                <div className={styles.test_content_third_content_4_1_1_2_1_thrid_item}>
+                                                                                                    <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div className={styles.test_content_third_content_4_1_1_2}>
+                                                                                            <div className={styles.test_content_third_content_4_1_1_2_1_thrid_ittm}>
+                                                                                                <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
+                                                                                            </div>
+                                                                                            <div className={styles.test_content_third_content_4_1_1_2_1_thrid_ittm}>
+                                                                                                <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
+                                                                                            </div>
+                                                                                            <div className={styles.test_content_third_content_4_1_1_2_1_thrid_ittm}>
+                                                                                                <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
+                                                                                            </div>
+                                                                                            <div className={styles.test_content_third_content_4_1_1_2_1_thrid_ittm}>
+                                                                                                <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                )
+                                                                            )
+                                                                        }
+                                                                    })
+                                                                }
+
+                                                            </div>
+
+                                                        </div>
+
+                                                    </div>
+
+                                                </div>
+                                            )
+                                        })
+                                    }
+
+
+                                    {/* <div className={styles.test_content_third_content_6_1_2}>
                                 <div className={styles.test_content_third_content_6_1_2_1}>
                                     <div className={styles.test_content_third_content_3_2_1}>
                                         Կարճ պատասխանով
                                     </div>
                                     <div className={styles.test_content_third_content_4_1}>
-                                        <div className={styles.test_content_third_content_4_1_overlay}>
-                                            {
-                                                [...new Array(Number(chAnsQuestCountItem.wrongChooseAnswerQuest))].map((val, ind) => {
-                                                    return (
-                                                        <div key={ind} className={styles.test_content_third_content_4_1_1}>
-                                                            <div className={styles.test_content_third_content_6_1_1_2_1_1_1}>
-                                                                <div className={styles.test_content_third_content_6_1_1_2_1}>
-                                                                    <span>
-                                                                        <input type="number" />
-                                                                    </span>
-                                                                    <span>
-                                                                        <input type="number" />
-                                                                    </span>
-                                                                </div>
-                                                            </div>
-                                                            <div className={styles.test_content_third_content_4_1_1_2}>
-                                                                <div className={styles.test_content_third_content_4_1_1_2_1}>
-                                                                    <input type="radio" name='short1' />
-                                                                </div>
-                                                                <div className={styles.test_content_third_content_4_1_1_2_1}>
-                                                                    <input type="radio" name='short1' />
-                                                                </div>
-                                                                <div className={styles.test_content_third_content_4_1_1_2_1}>
-                                                                    <input type="radio" name='short1' />
-                                                                </div>
-                                                                <div className={styles.test_content_third_content_4_1_1_2_1}>
-                                                                    <input type="radio" name='short1' />
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    )
-                                                })
-                                            }
-                                        </div>
                                         <div className={styles.test_content_third_content_4_1_2}>
                                             <div className={styles.test_content_third_content_4_1_2_1}>
                                                 <div className={styles.test_content_third_content_4_1_2_1_1}>
-                                                    {/* <div className={styles.test_content_third_content_4_1_2_1_1_1}></div> */}
                                                     <div className={styles.test_content_third_content_4_1_2_1_1_1_1}>
                                                         A
                                                     </div>
@@ -1532,10 +1853,22 @@ const FinalTestComp: React.FC<OwnProps> = () => {
 
                                     </div>
                                 </div>
+                            </div> */}
+
+                                </div>
                             </div>
 
+
                         </div>
+
                     </div>
+                    {/* sixth part */}
+
+
+
+
+
+
                 </div>
 
 
@@ -1554,7 +1887,13 @@ const FinalTestComp: React.FC<OwnProps> = () => {
                     </div>
                 </div>
             </div>
-        </div>
+
+
+
+            <div className={styles.printPart}>
+                <button onClick={() => printFunc()}>print</button>
+            </div>
+        </div >
         // </div >
     )
 }
