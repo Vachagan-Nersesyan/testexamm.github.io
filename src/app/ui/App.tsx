@@ -12,7 +12,6 @@ const App: React.FC<OwnProps> = () => {
       <Routes>
         <Route path='/' element={<TestComp />} />
         <Route path='/test' element={<FinalTestComp />} />
-        <Route path='https://vachagan-nersesyan.github.io/testexamm.github.io/' element={<div>asdfasdfasdfadfadsf</div>} />
       </Routes>
     </div>
   );
