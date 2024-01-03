@@ -11,7 +11,7 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
+    <BrowserRouter basename="https://vachagan-nersesyan.github.io/testexamm.github.io">
       <Provider store={store}>
         <Suspense fallback={<div className='loader_comp_content'>Loading...</div>}>
           <App />
