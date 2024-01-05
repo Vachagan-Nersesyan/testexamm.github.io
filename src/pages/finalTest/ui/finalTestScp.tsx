@@ -1,10 +1,11 @@
-import React, { ChangeEvent, useState } from 'react'
+import React, { ChangeEvent, useEffect, useState } from 'react'
 import styles from './finalTestStl.module.css'
 import { InputState, OwnProps } from './finalTestTs.interface'
 import { useSelector } from 'react-redux'
 import { AppStateType } from 'entities/store/redux-store'
 
 import pic from '../images/1.png'
+import { AllInfoAType } from 'entities/testR/testReducerTs.interface'
 
 const FinalTestComp: React.FC<OwnProps> = () => {
 
@@ -51,20 +52,18 @@ const FinalTestComp: React.FC<OwnProps> = () => {
 
 
     // first part items
-    const [infoSttngs, setInfoSttngs] = useState<number>(Math.ceil(Number(chAnsQuestCountItem.chooseAnswerQuest) / 19))
+    // const [infoSttngs, setInfoSttngs] = useState<number>(Math.ceil(Number(chAnsQuestCountItem.chooseAnswerQuest) / 19))
     let lastIndex = 0
     let isLoopEnd = false
 
     // second part items
 
-    const infoSecSettings = Math.ceil(Number(chAnsQuestCountItem.shortAnswerQuest) / 3)
+    // const infoSecSettings = Math.ceil(Number(chAnsQuestCountItem.shortAnswerQuest) / 3)
     let isSecLoopEnd = false
     let lastSecIndex = 0
 
 
-    const infoThirdSettings = Math.ceil(Number(chAnsQuestCountItem.shortAnswerBQuest) / 3)
-    let isThirdLoopEnd = false
-    let lastThirdIndex = 0
+
 
 
     const infoForthSettings = Math.ceil(Number(chAnsQuestCountItem.chooseAnswerBQuest) / 19)
@@ -80,18 +79,18 @@ const FinalTestComp: React.FC<OwnProps> = () => {
     let lastSixthIndex = 0
 
 
-    const infoSeventhSettings = Math.ceil(Number(chAnsQuestCountItem.shortAnswerEQuest) / 10)
-    let isSeventhLoopEnd = false
-    let lastSeventhIndex = 0
+    // const infoSeventhSettings = Math.ceil(Number(chAnsQuestCountItem.shortAnswerEQuest) / 10)
+    // let isSeventhLoopEnd = false
+    // let lastSeventhIndex = 0
 
-    const infoEightSettings = Math.ceil(Number(chAnsQuestCountItem.wrongChooseAnswerQuest) / 3)
-    let isEightLoopEnd = false
-    let lastEightIndex = 0
+    // const infoEightSettings = Math.ceil(Number(chAnsQuestCountItem.wrongChooseAnswerQuest) / 3)
+    // let isEightLoopEnd = false
+    // let lastEightIndex = 0
 
 
-    const infoNinethSettings = Math.ceil(Number(chAnsQuestCountItem.wrongShortAnswerQuest) / 3)
-    let isNinethLoopEnd = false
-    let lastNinethIndex = 0
+    // const infoNinethSettings = Math.ceil(Number(chAnsQuestCountItem.wrongShortAnswerQuest) / 3)
+    // let isNinethLoopEnd = false
+    // let lastNinethIndex = 0
 
 
     // dd start
@@ -146,6 +145,38 @@ const FinalTestComp: React.FC<OwnProps> = () => {
     }
 
 
+    const arrAllInfo = useSelector((state: AppStateType) => state.testR.allInfoArr)
+    const [arrInfo, setArrInfo] = useState<Array<AllInfoAType>>(arrAllInfo)
+
+    useEffect(() => {
+        setArrInfo(arrAllInfo)
+        console.log(arrInfo, 'arrInfoarrInfo')
+    }, [arrAllInfo])
+
+    let infoSttngs = 0
+    let infoSecSettings = 0
+    let infoThirdSettings = 0
+
+    const subjectName = useSelector((state: AppStateType) => state.testR.subjectName)
+    const examYear = useSelector((state: AppStateType) => state.testR.examYear)
+    const examType = useSelector((state: AppStateType) => state.testR.examType)
+
+
+
+    // wrong asnwer part
+
+    const arrAllQuestInfo = useSelector((state: AppStateType) => state.testR.wrongQuestArr)
+    const [arrWrInfo, setArrWrInfo] = useState<Array<AllInfoAType>>(arrAllQuestInfo)
+
+    useEffect(() => {
+        setArrWrInfo(arrAllQuestInfo)
+        console.log(arrWrInfo, 'arrWrInfoarrWrInfoarrWrInfoarrWrInfo')
+    }, [arrAllQuestInfo])
+
+
+    let infoSeventhSettings = 0
+    let infoEightSettings = 0
+    let infoNinethSettings = 0
 
 
     return (
@@ -155,11 +186,11 @@ const FinalTestComp: React.FC<OwnProps> = () => {
                     <div className={styles.test_content_first_content}>
                         <div className={styles.test_content_first_content_1}>
                             <div className={styles.test_content_first_content_1_1}>
-                                <span className={styles.test_content_first_content_1_1_num}>2017</span>թ․ <input /> քննություն
+                                <span className={styles.test_content_first_content_1_1_num}>{examYear}</span>թ․ {examType} քննություն
                             </div>
                             <div className={styles.test_content_first_content_1_2}>
                                 <span>Պատասխանների ձևաթուղթ</span>
-                                <span>Գերմաներեն</span>
+                                <span>{subjectName}</span>
                             </div>
                             <div className={styles.test_content_first_content_1_3}>
                                 <div className={styles.test_content_first_content_1_3_1}>
@@ -333,1527 +364,1003 @@ const FinalTestComp: React.FC<OwnProps> = () => {
                         <div className={styles.ss}>
 
                             {
-                                [...new Array(infoSttngs)].map((val1, ind1) => {
-                                    // debugger
-                                    isLoopEnd = false
-                                    return (
-                                        <div key={ind1} className={styles.test_content_third_content_3}>
-                                            {
-                                                ind1 !== 0 && ind1 !== [...new Array(infoSttngs)].length - 1
-                                                    ?
-                                                    null
-                                                    :
-                                                    <div className={styles.test_content_third_content_3_title}>
-                                                        Ընտրովի պատասխանով առաջադրանքներ
-                                                    </div>
-                                            }
-                                            <div className={styles.test_content_third_content_3_2}>
-                                                <div className={styles.test_content_third_content_3_2_1}>
-                                                    Պատասխանի համարը
-                                                </div>
-                                                <div className={styles.test_content_third_content_3_2_2}>
-                                                    <span>a</span>
-                                                    <span>b</span>
-                                                    <span>c</span>
-                                                    <span>d</span>
-                                                </div>
-                                                <div className={styles.test_content_third_content_3_2_3}>
-                                                    {
-                                                        [...new Array(Number(chAnsQuestCountItem.chooseAnswerQuest))].map((val, ind) => {
-                                                            // debugger
-                                                            // console.log(initialFIndex, 'initialFIndexinitialFIndex')
+                                arrInfo.map((val) => {
 
-                                                            if (!isLoopEnd && ind > lastIndex || ind === 0 && ind1 === 0) {
-                                                                // initialFIndex += 1
-                                                                if ((ind + 1) % 19 === 0) {
-                                                                    isLoopEnd = true
-                                                                    lastIndex = ind
-                                                                    return null
-                                                                } else {
-                                                                    countBg += 1
-                                                                    return (
-                                                                        <div key={ind} className={styles.test_content_third_content_3_2_3_1}>
-                                                                            <div className={styles.test_content_third_content_3_2_3_1_1}>
-                                                                                {countBg}
-                                                                            </div>
-                                                                            <div className={styles.test_content_third_content_3_2_3_1_2}>
-                                                                                <form action="">
-                                                                                    <div className={styles.test_content_third_content_3_2_3_1_2_1}>
-                                                                                        <input type="radio" name='1' />
-                                                                                    </div>
-                                                                                    <div className={styles.test_content_third_content_3_2_3_1_2_1}>
-                                                                                        <input type="radio" name='1' />
-                                                                                    </div>
-                                                                                    <div className={styles.test_content_third_content_3_2_3_1_2_1}>
-                                                                                        <input type="radio" name='1' />
-                                                                                    </div>
-                                                                                    <div className={styles.test_content_third_content_3_2_3_1_2_1}>
-                                                                                        <input type="radio" name='1' />
-                                                                                    </div>
-                                                                                </form>
-                                                                            </div>
-                                                                        </div>
-                                                                    )
-                                                                }
-                                                            }
+                                    if (val.selectedValue === 'choose') {
 
-                                                        })
-                                                    }
-                                                </div>
-                                                <div className={styles.test_content_third_content_3_2_2}>
-                                                    <span>a</span>
-                                                    <span>b</span>
-                                                    <span>c</span>
-                                                    <span>d</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    )
-                                })
-                            }
-
-                            <div className={styles.test_content_third_content_3_content_d}>
-                                {
-                                    Number((Number(chAnsQuestCountItem.chooseAnswerQuest) / 19).toFixed(1)[infoSttngs.toFixed(1).length - 1]) >= 7
-                                        ?
-                                        null
-                                        :
-                                        <div className={styles.test_content_third_content_3_title}>
-                                            Կարճ պատասխանով առաջադրանքներ
-                                        </div>
-                                }
-                                <div className={styles.test_content_third_content_3_content_f}>
-                                    {
-                                        Number((Number(chAnsQuestCountItem.chooseAnswerQuest) / 19).toFixed(1)[infoSttngs.toFixed(1).length - 1]) < 5
-                                            ?
-
-                                            [...new Array(infoSecSettings)].map((val, ind) => {
-                                                startIndex = 3
-                                                startIndexCount = 2
-                                                startSecIndexCount = 2
+                                        infoSttngs = Math.ceil(Number(val.countValue) / 19)
+                                        let isLoopEnd = val.isLoopEnd
+                                        let lastIndex = val.lastIndex
+                                        return (
+                                            [...new Array(infoSttngs)].map((val1, ind1) => {
                                                 // debugger
-                                                if (ind > 1) {
-                                                    return null
-                                                }
-                                                isSecLoopEnd = false
+                                                isLoopEnd = false
                                                 return (
-                                                    <div className={styles.test_content_third_content_4}>
-                                                        {/* <div className={styles.test_content_third_content_3_title}>
-                                                    Կարճ պատասխանով առաջադրանքներ
-                                                </div> */}
-                                                        <div className={styles.test_content_third_content_4_1_b}>
-                                                            <div className={styles.test_content_third_content_4_1_overlay}>
+                                                    <div key={ind1} className={styles.test_content_third_content_3}>
+                                                        {
+                                                            ind1 !== 0 && ind1 !== [...new Array(infoSttngs)].length - 1
+                                                                ?
+                                                                null
+                                                                :
+                                                                <div className={styles.test_content_third_content_3_title}>
+                                                                    Ընտրովի պատասխանով առաջադրանքներ
+                                                                </div>
+                                                        }
+                                                        <div className={styles.test_content_third_content_3_2}>
+                                                            <div className={styles.test_content_third_content_3_2_1}>
+                                                                Պատասխանի համարը
+                                                            </div>
+                                                            <div className={styles.test_content_third_content_3_2_2}>
+                                                                <span>a</span>
+                                                                <span>b</span>
+                                                                <span>c</span>
+                                                                <span>d</span>
+                                                            </div>
+                                                            <div className={styles.test_content_third_content_3_2_3}>
                                                                 {
-                                                                    [...new Array(Number(chAnsQuestCountItem.shortAnswerQuest))].map((val1, ind1) => {
+                                                                    [...new Array(Number(val.countValue))].map((val, ind) => {
                                                                         // debugger
-                                                                        if (!isSecLoopEnd && ind1 > lastSecIndex || ind === 0 && ind1 === 0) {
-                                                                            if (ind1 % 3 === 0 && ind1 !== 0) {
-                                                                                isSecLoopEnd = true
-                                                                                lastSecIndex = ind1
+                                                                        // console.log(initialFIndex, 'initialFIndexinitialFIndex')
+
+                                                                        if (!isLoopEnd && ind > lastIndex || ind === 0 && ind1 === 0) {
+                                                                            // initialFIndex += 1
+                                                                            if ((ind + 1) % 19 === 0) {
+                                                                                isLoopEnd = true
+                                                                                lastIndex = ind
                                                                                 return null
                                                                             } else {
                                                                                 countBg += 1
                                                                                 return (
-                                                                                    <div key={ind} className={styles.test_content_third_content_4_1_1}>
-                                                                                        <div className={styles.test_content_third_content_4_1_1_1}>
+                                                                                    <div key={ind} className={styles.test_content_third_content_3_2_3_1}>
+                                                                                        <div className={styles.test_content_third_content_3_2_3_1_1}>
                                                                                             {countBg}
                                                                                         </div>
-                                                                                        <div className={styles.test_content_third_content_4_1_1_2}>
-                                                                                            <div className={styles.test_content_third_content_4_1_1_2_1}>
-                                                                                                <input type="radio" name='short1' />
-                                                                                            </div>
-                                                                                            <div className={styles.test_content_third_content_4_1_1_2_1}>
-                                                                                                <input type="radio" name='short1' />
-                                                                                            </div>
-                                                                                            <div className={styles.test_content_third_content_4_1_1_2_1}>
-                                                                                                <input type="radio" name='short1' />
-                                                                                            </div>
-                                                                                            <div className={styles.test_content_third_content_4_1_1_2_1}>
-                                                                                                <input type="radio" name='short1' />
-                                                                                            </div>
+                                                                                        <div className={styles.test_content_third_content_3_2_3_1_2}>
+                                                                                            <form action="">
+                                                                                                <div className={styles.test_content_third_content_3_2_3_1_2_1}>
+                                                                                                    <input type="radio" name='1' />
+                                                                                                </div>
+                                                                                                <div className={styles.test_content_third_content_3_2_3_1_2_1}>
+                                                                                                    <input type="radio" name='1' />
+                                                                                                </div>
+                                                                                                <div className={styles.test_content_third_content_3_2_3_1_2_1}>
+                                                                                                    <input type="radio" name='1' />
+                                                                                                </div>
+                                                                                                <div className={styles.test_content_third_content_3_2_3_1_2_1}>
+                                                                                                    <input type="radio" name='1' />
+                                                                                                </div>
+                                                                                            </form>
                                                                                         </div>
                                                                                     </div>
                                                                                 )
                                                                             }
-                                                                        } else if (ind1 === lastSecIndex) {
-                                                                            countBg += 1
-                                                                            return (
-                                                                                (
-                                                                                    <div key={ind} className={styles.test_content_third_content_4_1_1}>
-                                                                                        <div className={styles.test_content_third_content_4_1_1_1}>
-                                                                                            {countBg}
-                                                                                        </div>
-                                                                                        <div className={styles.test_content_third_content_4_1_1_2}>
-                                                                                            <div className={styles.test_content_third_content_4_1_1_2_1}>
-                                                                                                <input type="radio" name='short1' />
-                                                                                            </div>
-                                                                                            <div className={styles.test_content_third_content_4_1_1_2_1}>
-                                                                                                <input type="radio" name='short1' />
-                                                                                            </div>
-                                                                                            <div className={styles.test_content_third_content_4_1_1_2_1}>
-                                                                                                <input type="radio" name='short1' />
-                                                                                            </div>
-                                                                                            <div className={styles.test_content_third_content_4_1_1_2_1}>
-                                                                                                <input type="radio" name='short1' />
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                )
-                                                                            )
                                                                         }
+
                                                                     })
                                                                 }
+                                                            </div>
+                                                            <div className={styles.test_content_third_content_3_2_2}>
+                                                                <span>a</span>
+                                                                <span>b</span>
+                                                                <span>c</span>
+                                                                <span>d</span>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 )
                                             })
 
-                                            :
+                                        )
+                                    } else if (val.selectedValue === 'short') {
 
-                                            Number((Number(chAnsQuestCountItem.chooseAnswerQuest) / 19).toFixed(1)[infoSttngs.toFixed(1).length - 1]) > 5 && Number((Number(chAnsQuestCountItem.chooseAnswerQuest) / 19).toFixed(1)[infoSttngs.toFixed(1).length - 1]) < 7
-                                                ?
-                                                [...new Array(infoSecSettings)].map((val, ind) => {
-                                                    startIndex = 5
-                                                    startIndexCount = 1
-                                                    startSecIndexCount = 1
-                                                    // debugger
-                                                    if (ind > 0) {
-                                                        return null
+                                        infoSecSettings = Math.ceil(Number(val.countValue) / 3)
+                                        let isSecLoopEnd = false
+                                        let lastSecIndex = 0
+
+                                        return (
+                                            <>
+                                                <div className={styles.test_content_third_content_3_content_d}>
+                                                    {
+                                                        Number((Number(val.countValue) / 19).toFixed(1)[infoSttngs.toFixed(1).length - 1]) >= 7
+                                                            ?
+                                                            null
+                                                            :
+                                                            <div className={styles.test_content_third_content_3_title}>
+                                                                Կարճ պատասխանով առաջադրանքներ
+                                                            </div>
                                                     }
-                                                    isSecLoopEnd = false
-                                                    return (
-                                                        <div className={styles.test_content_third_content_4}>
-                                                            {/* <div className={styles.test_content_third_content_3_title}>
+                                                    <div className={styles.test_content_third_content_3_content_f}>
+                                                        {
+                                                            Number((Number(val.countValue) / 19).toFixed(1)[infoSttngs.toFixed(1).length - 1]) < 5
+                                                                ?
+
+                                                                [...new Array(infoSecSettings)].map((val1, ind) => {
+                                                                    startIndex = 3
+                                                                    startIndexCount = 2
+                                                                    startSecIndexCount = 2
+                                                                    // debugger
+                                                                    if (ind > 1) {
+                                                                        return null
+                                                                    }
+                                                                    isSecLoopEnd = false
+                                                                    return (
+                                                                        <div className={styles.test_content_third_content_4}>
+                                                                            {/* <div className={styles.test_content_third_content_3_title}>
                                                     Կարճ պատասխանով առաջադրանքներ
                                                 </div> */}
-                                                            <div className={styles.test_content_third_content_4_1_b}>
-                                                                <div className={styles.test_content_third_content_4_1_overlay}>
-                                                                    {
-                                                                        [...new Array(Number(chAnsQuestCountItem.shortAnswerQuest))].map((val1, ind1) => {
-                                                                            // debugger
-                                                                            if (!isSecLoopEnd && ind1 > lastSecIndex || ind === 0 && ind1 === 0) {
-                                                                                if (ind1 % 3 === 0 && ind1 !== 0) {
-                                                                                    isSecLoopEnd = true
-                                                                                    lastSecIndex = ind1
-                                                                                    return null
-                                                                                } else {
-                                                                                    countBg += 1
-                                                                                    return (
-                                                                                        <div key={ind} className={styles.test_content_third_content_4_1_1}>
-                                                                                            <div className={styles.test_content_third_content_4_1_1_1}>
-                                                                                                {countBg}
-                                                                                            </div>
-                                                                                            <div className={styles.test_content_third_content_4_1_1_2}>
-                                                                                                <div className={styles.test_content_third_content_4_1_1_2_1}>
-                                                                                                    <input type="radio" name='short1' />
-                                                                                                </div>
-                                                                                                <div className={styles.test_content_third_content_4_1_1_2_1}>
-                                                                                                    <input type="radio" name='short1' />
-                                                                                                </div>
-                                                                                                <div className={styles.test_content_third_content_4_1_1_2_1}>
-                                                                                                    <input type="radio" name='short1' />
-                                                                                                </div>
-                                                                                                <div className={styles.test_content_third_content_4_1_1_2_1}>
-                                                                                                    <input type="radio" name='short1' />
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    )
-                                                                                }
-                                                                            } else if (ind1 === lastSecIndex) {
-                                                                                countBg += 1
-                                                                                return (
-                                                                                    (
-                                                                                        <div key={ind} className={styles.test_content_third_content_4_1_1}>
-                                                                                            <div className={styles.test_content_third_content_4_1_1_1}>
-                                                                                                {countBg}
-                                                                                            </div>
-                                                                                            <div className={styles.test_content_third_content_4_1_1_2}>
-                                                                                                <div className={styles.test_content_third_content_4_1_1_2_1}>
-                                                                                                    <input type="radio" name='short1' />
-                                                                                                </div>
-                                                                                                <div className={styles.test_content_third_content_4_1_1_2_1}>
-                                                                                                    <input type="radio" name='short1' />
-                                                                                                </div>
-                                                                                                <div className={styles.test_content_third_content_4_1_1_2_1}>
-                                                                                                    <input type="radio" name='short1' />
-                                                                                                </div>
-                                                                                                <div className={styles.test_content_third_content_4_1_1_2_1}>
-                                                                                                    <input type="radio" name='short1' />
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    )
-                                                                                )
-                                                                            }
-                                                                        })
-                                                                    }
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    )
-                                                })
-                                                :
-                                                null
-                                    }
-                                </div>
-                            </div>
+                                                                            <div className={styles.test_content_third_content_4_1_b}>
+                                                                                <div className={styles.test_content_third_content_4_1_overlay}>
+                                                                                    {
+                                                                                        [...new Array(Number(val.countValue))].map((val1, ind1) => {
+                                                                                            // debugger
+                                                                                            if (!isSecLoopEnd && ind1 > lastSecIndex || ind === 0 && ind1 === 0) {
+                                                                                                if (ind1 % 3 === 0 && ind1 !== 0) {
+                                                                                                    isSecLoopEnd = true
+                                                                                                    lastSecIndex = ind1
+                                                                                                    return null
+                                                                                                } else {
+                                                                                                    countBg += 1
+                                                                                                    return (
+                                                                                                        <div key={ind} className={styles.test_content_third_content_4_1_1}>
+                                                                                                            <div className={styles.test_content_third_content_4_1_1_1}>
+                                                                                                                {countBg}
+                                                                                                            </div>
+                                                                                                            <div className={styles.test_content_third_content_4_1_1_2}>
+                                                                                                                <div className={styles.test_content_third_content_4_1_1_2_1}>
+                                                                                                                    <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
 
-                            <div className={styles.test_content_third_content_3_content_d}>
+                                                                                                                </div>
+                                                                                                                <div className={styles.test_content_third_content_4_1_1_2_1}>
+                                                                                                                    <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
+                                                                                                                </div>
+                                                                                                                <div className={styles.test_content_third_content_4_1_1_2_1}>
+                                                                                                                    <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
+                                                                                                                </div>
+                                                                                                                <div className={styles.test_content_third_content_4_1_1_2_1}>
+                                                                                                                    <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
+                                                                                                                </div>
+                                                                                                                <div className={styles.test_content_third_content_4_1_1_2_1}>
+                                                                                                                    <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
+                                                                                                                </div>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                    )
+                                                                                                }
+                                                                                            } else if (ind1 === lastSecIndex) {
+                                                                                                countBg += 1
+                                                                                                return (
+                                                                                                    (
+                                                                                                        <div key={ind} className={styles.test_content_third_content_4_1_1}>
+                                                                                                            <div className={styles.test_content_third_content_4_1_1_1}>
+                                                                                                                {countBg}
+                                                                                                            </div>
+                                                                                                            <div className={styles.test_content_third_content_4_1_1_2}>
+                                                                                                                <div className={styles.test_content_third_content_4_1_1_2_1}>
+                                                                                                                    <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
 
-                                <div className={styles.test_content_third_content_3_title}>
-                                    Կարճ պատասխանով առաջադրանքներ
-                                </div>
-                                <div className={styles.test_content_third_content_3_content_d_item}>
-                                    {
-                                        [...new Array(infoSecSettings)].map((val, ind) => {
-                                            // ddddddddd
-                                            // debugger
-                                            if (startIndexCount !== 0) {
-                                                startIndexCount--
-                                                return null
-                                            }
+                                                                                                                </div>
+                                                                                                                <div className={styles.test_content_third_content_4_1_1_2_1}>
+                                                                                                                    <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
+                                                                                                                </div>
+                                                                                                                <div className={styles.test_content_third_content_4_1_1_2_1}>
+                                                                                                                    <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
+                                                                                                                </div>
+                                                                                                                <div className={styles.test_content_third_content_4_1_1_2_1}>
+                                                                                                                    <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
+                                                                                                                </div>
+                                                                                                                <div className={styles.test_content_third_content_4_1_1_2_1}>
+                                                                                                                    <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
+                                                                                                                </div>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                    )
+                                                                                                )
+                                                                                            }
+                                                                                        })
+                                                                                    }
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    )
+                                                                })
 
-                                            // if (ind >= (Math.floor((infoSecSettings - startSecIndexCount) / 4) * 4) + startSecIndexCount) {
-                                            //     return null
-                                            // }
-                                            lastSeccIndex = ind
+                                                                :
 
-                                            console.log((Math.floor((infoSecSettings - startSecIndexCount) / 4) * 4) + startSecIndexCount, 'infoSecSettings - startSecIndexCount) / 4')
-                                            ind = startIndex + ind
-                                            // debugger
-                                            isSecLoopEnd = false
-                                            return (
-                                                <div className={styles.test_content_third_content_4}>
-                                                    {/* <div className={styles.test_content_third_content_3_title}>
+                                                                Number((Number(val.countValue) / 19).toFixed(1)[infoSttngs.toFixed(1).length - 1]) > 5 && Number((Number(chAnsQuestCountItem.chooseAnswerQuest) / 19).toFixed(1)[infoSttngs.toFixed(1).length - 1]) < 7
+                                                                    ?
+                                                                    [...new Array(infoSecSettings)].map((val2, ind) => {
+                                                                        startIndex = 5
+                                                                        startIndexCount = 1
+                                                                        startSecIndexCount = 1
+                                                                        // debugger
+                                                                        if (ind > 0) {
+                                                                            return null
+                                                                        }
+                                                                        isSecLoopEnd = false
+                                                                        return (
+                                                                            <div className={styles.test_content_third_content_4}>
+                                                                                {/* <div className={styles.test_content_third_content_3_title}>
+                                                    Կարճ պատասխանով առաջադրանքներ
+                                                </div> */}
+                                                                                <div className={styles.test_content_third_content_4_1_b}>
+                                                                                    <div className={styles.test_content_third_content_4_1_overlay}>
+                                                                                        {
+                                                                                            [...new Array(Number(val.countValue))].map((val1, ind1) => {
+                                                                                                // debugger
+                                                                                                if (!isSecLoopEnd && ind1 > lastSecIndex || ind === 0 && ind1 === 0) {
+                                                                                                    if (ind1 % 3 === 0 && ind1 !== 0) {
+                                                                                                        isSecLoopEnd = true
+                                                                                                        lastSecIndex = ind1
+                                                                                                        return null
+                                                                                                    } else {
+                                                                                                        countBg += 1
+                                                                                                        return (
+                                                                                                            <div key={ind} className={styles.test_content_third_content_4_1_1}>
+                                                                                                                <div className={styles.test_content_third_content_4_1_1_1}>
+                                                                                                                    {countBg}
+                                                                                                                </div>
+                                                                                                                <div className={styles.test_content_third_content_4_1_1_2}>
+                                                                                                                    <div className={styles.test_content_third_content_4_1_1_2_1}>
+                                                                                                                        <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
+
+                                                                                                                    </div>
+                                                                                                                    <div className={styles.test_content_third_content_4_1_1_2_1}>
+                                                                                                                        <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
+                                                                                                                    </div>
+                                                                                                                    <div className={styles.test_content_third_content_4_1_1_2_1}>
+                                                                                                                        <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
+                                                                                                                    </div>
+                                                                                                                    <div className={styles.test_content_third_content_4_1_1_2_1}>
+                                                                                                                        <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
+                                                                                                                    </div>
+                                                                                                                    <div className={styles.test_content_third_content_4_1_1_2_1}>
+                                                                                                                        <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
+                                                                                                                    </div>
+                                                                                                                </div>
+                                                                                                            </div>
+                                                                                                        )
+                                                                                                    }
+                                                                                                } else if (ind1 === lastSecIndex) {
+                                                                                                    countBg += 1
+                                                                                                    return (
+                                                                                                        (
+                                                                                                            <div key={ind} className={styles.test_content_third_content_4_1_1}>
+                                                                                                                <div className={styles.test_content_third_content_4_1_1_1}>
+                                                                                                                    {countBg}
+                                                                                                                </div>
+                                                                                                                <div className={styles.test_content_third_content_4_1_1_2}>
+                                                                                                                    <div className={styles.test_content_third_content_4_1_1_2_1}>
+                                                                                                                        <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
+
+                                                                                                                    </div>
+                                                                                                                    <div className={styles.test_content_third_content_4_1_1_2_1}>
+                                                                                                                        <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
+                                                                                                                    </div>
+                                                                                                                    <div className={styles.test_content_third_content_4_1_1_2_1}>
+                                                                                                                        <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
+                                                                                                                    </div>
+                                                                                                                    <div className={styles.test_content_third_content_4_1_1_2_1}>
+                                                                                                                        <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
+                                                                                                                    </div>
+                                                                                                                    <div className={styles.test_content_third_content_4_1_1_2_1}>
+                                                                                                                        <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
+                                                                                                                    </div>
+                                                                                                                </div>
+                                                                                                            </div>
+                                                                                                        )
+                                                                                                    )
+                                                                                                }
+                                                                                            })
+                                                                                        }
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        )
+                                                                    })
+                                                                    :
+                                                                    null
+                                                        }
+                                                    </div>
+                                                </div>
+
+                                                <div className={styles.test_content_third_content_3_content_d}>
+
+                                                    <div className={styles.test_content_third_content_3_title}>
+                                                        Կարճ պատասխանով առաջադրանքներ
+                                                    </div>
+                                                    <div className={styles.test_content_third_content_3_content_d_item}>
+                                                        {
+                                                            [...new Array(infoSecSettings)].map((val2, ind) => {
+                                                                // ddddddddd
+                                                                // debugger
+                                                                if (startIndexCount !== 0) {
+                                                                    startIndexCount--
+                                                                    return null
+                                                                }
+
+                                                                // if (ind >= (Math.floor((infoSecSettings - startSecIndexCount) / 4) * 4) + startSecIndexCount) {
+                                                                //     return null
+                                                                // }
+                                                                lastSeccIndex = ind
+
+                                                                console.log((Math.floor((infoSecSettings - startSecIndexCount) / 4) * 4) + startSecIndexCount, 'infoSecSettings - startSecIndexCount) / 4')
+                                                                ind = startIndex + ind
+                                                                // debugger
+                                                                isSecLoopEnd = false
+                                                                return (
+                                                                    <div className={styles.test_content_third_content_4}>
+                                                                        {/* <div className={styles.test_content_third_content_3_title}>
                                                 Կարճ պատասխանով առաջադրանքներ
                                             </div>  */}
-                                                    <div className={styles.test_content_third_content_4_1_b}>
-                                                        <div className={styles.test_content_third_content_4_1_overlay}>
-                                                            {
-                                                                [...new Array(Number(chAnsQuestCountItem.shortAnswerQuest))].map((val1, ind1) => {
-                                                                    // debugger
-                                                                    if (!isSecLoopEnd && ind1 > lastSecIndex || ind === 0 && ind1 === 0) {
-                                                                        if (ind1 % 3 === 0 && ind1 !== 0) {
-                                                                            isSecLoopEnd = true
-                                                                            lastSecIndex = ind1
-                                                                            return null
-                                                                        } else {
-                                                                            countBg += 1
-                                                                            return (
-                                                                                <div key={ind} className={styles.test_content_third_content_4_1_1}>
-                                                                                    <div className={styles.test_content_third_content_4_1_1_1}>
-                                                                                        {countBg}
-                                                                                    </div>
-                                                                                    <div className={styles.test_content_third_content_4_1_1_2}>
-                                                                                        <div className={styles.test_content_third_content_4_1_1_2_1}>
-                                                                                            <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
-
-                                                                                        </div>
-                                                                                        <div className={styles.test_content_third_content_4_1_1_2_1}>
-                                                                                            <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
-                                                                                        </div>
-                                                                                        <div className={styles.test_content_third_content_4_1_1_2_1}>
-                                                                                            <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
-                                                                                        </div>
-                                                                                        <div className={styles.test_content_third_content_4_1_1_2_1}>
-                                                                                            <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
-                                                                                        </div>
-                                                                                        <div className={styles.test_content_third_content_4_1_1_2_1}>
-                                                                                            <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
-                                                                                        </div>
-                                                                                        <div className={styles.test_content_third_content_4_1_1_2_1}>
-                                                                                            <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                            )
-                                                                        }
-                                                                    } else if (ind1 === lastSecIndex) {
-                                                                        countBg += 1
-                                                                        return (
-                                                                            (
-                                                                                <div key={ind} className={styles.test_content_third_content_4_1_1}>
-                                                                                    <div className={styles.test_content_third_content_4_1_1_1}>
-                                                                                        {countBg}
-                                                                                    </div>
-                                                                                    <div className={styles.test_content_third_content_4_1_1_2}>
-                                                                                        <div className={styles.test_content_third_content_4_1_1_2_1}>
-                                                                                            <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
-                                                                                        </div>
-                                                                                        <div className={styles.test_content_third_content_4_1_1_2_1}>
-                                                                                            <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
-                                                                                        </div>
-                                                                                        <div className={styles.test_content_third_content_4_1_1_2_1}>
-                                                                                            <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
-                                                                                        </div>
-                                                                                        <div className={styles.test_content_third_content_4_1_1_2_1}>
-                                                                                            <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
-                                                                                        </div>
-                                                                                        <div className={styles.test_content_third_content_4_1_1_2_1}>
-                                                                                            <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
-                                                                                        </div>
-                                                                                        <div className={styles.test_content_third_content_4_1_1_2_1}>
-                                                                                            <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                            )
-                                                                        )
-                                                                    }
-                                                                })
-                                                            }
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            )
-                                        })
-                                    }
-                                </div>
-                            </div>
-
-
-                            {/* <div className={styles.test_content_third_content_3_content_d}>
-
-                                <div className={styles.test_content_third_content_3_title}>
-                                    Կարճ պատասխանով առաջադրանքներ
-                                </div>
-                                <div className={styles.test_content_third_content_3_content_d_item}>
-                                    {
-                                        [...new Array(infoSecSettings - ((Math.floor((infoSecSettings - startSecIndexCount) / 4) * 4) + startSecIndexCount))].map((val, ind) => {
-                                            // ddddddddd
-                                            // debugger
-                                            // if (startIndexCount !== 0) {
-                                            //     startIndexCount--
-                                            //     return null
-                                            // }
-                                            // debugger
-                                            // if (ind >= (Math.floor((infoSecSettings - startSecIndexCount) / 4) * 4) + startSecIndexCount) {
-                                            //     return null
-                                            // }
-                                            // if (ind < lastSeccIndex) {
-                                            //     return null
-                                            // }
-
-                                            // console.log((Math.floor((infoSecSettings - startSecIndexCount) / 4) * 4) + startSecIndexCount, 'infoSecSettings - startSecIndexCount) / 4')
-                                            ind = lastSeccIndex + ind
-                                            // debugger
-                                            isSecLoopEnd = false
-                                            return (
-                                                <div className={styles.test_content_third_content_4}>
-                                                    {/* <div className={styles.test_content_third_content_3_title}>
-                Կարճ պատասխանով առաջադրանքներ
-            </div>  
-                                                    <div className={styles.test_content_third_content_4_1}>
-                                                        <div className={styles.test_content_third_content_4_1_overlay}>
-                                                            {
-                                                                [...new Array(Number(chAnsQuestCountItem.shortAnswerQuest))].map((val1, ind1) => {
-                                                                    // debugger
-                                                                    if (!isSecLoopEnd && ind1 > lastSecIndex || ind === 0 && ind1 === 0) {
-                                                                        if (ind1 % 3 === 0 && ind1 !== 0) {
-                                                                            isSecLoopEnd = true
-                                                                            lastSecIndex = ind1
-                                                                            return null
-                                                                        } else {
-                                                                            return (
-                                                                                <div key={ind} className={styles.test_content_third_content_4_1_1}>
-                                                                                    <div className={styles.test_content_third_content_4_1_1_1}>
-                                                                                        {ind1}
-                                                                                    </div>
-                                                                                    <div className={styles.test_content_third_content_4_1_1_2}>
-                                                                                        <div className={styles.test_content_third_content_4_1_1_2_1}>
-                                                                                            <input type="radio" name='short1' />
-                                                                                        </div>
-                                                                                        <div className={styles.test_content_third_content_4_1_1_2_1}>
-                                                                                            <input type="radio" name='short1' />
-                                                                                        </div>
-                                                                                        <div className={styles.test_content_third_content_4_1_1_2_1}>
-                                                                                            <input type="radio" name='short1' />
-                                                                                        </div>
-                                                                                        <div className={styles.test_content_third_content_4_1_1_2_1}>
-                                                                                            <input type="radio" name='short1' />
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                            )
-                                                                        }
-                                                                    } else if (ind1 === lastSecIndex) {
-                                                                        return (
-                                                                            (
-                                                                                <div key={ind} className={styles.test_content_third_content_4_1_1}>
-                                                                                    <div className={styles.test_content_third_content_4_1_1_1}>
-                                                                                        {ind1}
-                                                                                    </div>
-                                                                                    <div className={styles.test_content_third_content_4_1_1_2}>
-                                                                                        <div className={styles.test_content_third_content_4_1_1_2_1}>
-                                                                                            <input type="radio" name='short1' />
-                                                                                        </div>
-                                                                                        <div className={styles.test_content_third_content_4_1_1_2_1}>
-                                                                                            <input type="radio" name='short1' />
-                                                                                        </div>
-                                                                                        <div className={styles.test_content_third_content_4_1_1_2_1}>
-                                                                                            <input type="radio" name='short1' />
-                                                                                        </div>
-                                                                                        <div className={styles.test_content_third_content_4_1_1_2_1}>
-                                                                                            <input type="radio" name='short1' />
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                            )
-                                                                        )
-                                                                    }
-                                                                })
-                                                            }
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            )
-                                        })
-                                    }
-                                </div>
-                            </div> */}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                            {/* <div className={styles.test_content_third_content_3_content_d}>
-                                <div className={styles.test_content_third_content_3_title}>
-                                    Կարճ պատասխանով առաջադրանքներ
-                                </div>
-                                <div className={styles.test_content_third_content_3_content_d_item}> */}
-
-                            {
-                                [...new Array(4 - (infoSecSettings - ((Math.floor((infoSecSettings - startSecIndexCount) / 4) * 4) + startSecIndexCount)))].map((val, ind) => {
-                                    // debugger
-                                    startIndexSecCount = (infoSecSettings - ((Math.floor((infoSecSettings - startSecIndexCount) / 4) * 4) + startSecIndexCount))
-                                    startSecIndex = 4 - (infoSecSettings - ((Math.floor((infoSecSettings - startSecIndexCount) / 4) * 4) + startSecIndexCount))
-                                    isThirdLoopEnd = false
-                                    return (
-                                        <div className={styles.test_content_third_content_4_b}>
-
-                                            <div className={styles.test_content_third_content_4_1_2}>
-                                                <div className={styles.test_content_third_content_4_1_2_1}>
-                                                    <div className={styles.test_content_third_content_4_1_2_1_1}>
-                                                        {/* <div className={styles.test_content_third_content_4_1_2_1_1_1}></div> */}
-                                                        <div className={styles.test_content_third_content_4_1_2_1_1_1_1}>
-                                                            A
-                                                        </div>
-                                                        <div className={styles.test_content_third_content_4_1_2_1_1_1_1}>
-                                                            B
-                                                        </div>
-                                                        <div className={styles.test_content_third_content_4_1_2_1_1_1_1}>
-                                                            C
-                                                        </div>
-                                                        <div className={styles.test_content_third_content_4_1_2_1_1_1_1}>
-                                                            D
-                                                        </div>
-                                                    </div>
-                                                    <div className={styles.test_content_third_content_4_1_2_1_2}>
-                                                        {
-                                                            [...new Array(Number(chAnsQuestCountItem.shortAnswerBQuest))].map((va1l, ind1) => {
-
-                                                                if (!isThirdLoopEnd && ind1 > lastThirdIndex || ind === 0 && ind1 === 0) {
-                                                                    if (ind1 % 3 === 0 && ind1 !== 0) {
-                                                                        isThirdLoopEnd = true
-                                                                        lastThirdIndex = ind1
-                                                                        return null
-                                                                    } else {
-                                                                        countBg += 1
-                                                                        return (
-                                                                            <div key={ind1} className={styles.test_content_third_content_4_1_1}>
-
-                                                                                <div className={styles.test_content_third_content_4_1_1_1}>
-                                                                                    {countBg}
-                                                                                </div>
-                                                                                <div className={styles.test_content_third_content_4_1_1_2}>
-                                                                                    <div className={styles.test_content_third_content_4_1_1_2_1}>
-                                                                                        <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
-                                                                                    </div>
-
-                                                                                    <div className={styles.test_content_third_content_4_1_1_2_1}>
-                                                                                        <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
-                                                                                    </div>
-                                                                                    <div className={styles.test_content_third_content_4_1_1_2_1}>
-                                                                                        <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
-                                                                                    </div>
-                                                                                    <div className={styles.test_content_third_content_4_1_1_2_1}>
-                                                                                        <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        )
-                                                                    }
-                                                                } else if (ind1 === lastThirdIndex) {
-                                                                    countBg += 1
-                                                                    return (
-                                                                        (
-                                                                            <div key={ind} className={styles.test_content_third_content_4_1_1}>
-                                                                                <div className={styles.test_content_third_content_4_1_1_1}>
-                                                                                    {countBg}
-                                                                                </div>
-                                                                                <div className={styles.test_content_third_content_4_1_1_2}>
-                                                                                    <div className={styles.test_content_third_content_4_1_1_2_1}>
-                                                                                        <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
-                                                                                    </div>
-                                                                                    <div className={styles.test_content_third_content_4_1_1_2_1}>
-                                                                                        <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
-                                                                                    </div>
-                                                                                    <div className={styles.test_content_third_content_4_1_1_2_1}>
-                                                                                        <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
-                                                                                    </div>
-                                                                                    <div className={styles.test_content_third_content_4_1_1_2_1}>
-                                                                                        <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        )
-                                                                    )
-                                                                }
-                                                            })
-                                                        }
-
-                                                    </div>
-
-                                                </div>
-
-                                            </div>
-
-                                        </div>
-                                    )
-                                })
-                            }
-                            {/* </div>
-                            </div>
- */}
-
-
-
-
-
-
-
-
-
-                            {/* <div className={styles.test_content_third_content_3_content_d}>
-                                <div className={styles.test_content_third_content_3_title}>
-                                    Կարճ պատասխանով առաջադրանքներ
-                                </div>
-
-                                <div className={styles.test_content_third_content_3_content_d_item}> */}
-                            {
-                                [...new Array(infoThirdSettings)].map((val, ind) => {
-
-                                    if (startSecIndex > 0) {
-                                        startSecIndex--
-                                        return null
-                                    }
-                                    // console.log(Math.floor((((infoSecSettings - startSecIndexCount) / 4) * 4) + startSecIndexCount), 'ee')
-                                    // console.log(infoThirdSettings - startIndexSecCount, 'infoThirdSettings - startIndexSecCount')
-                                    // debugger
-                                    // if (ind >= Math.floor((((infoSecSettings - startSecIndexCount) / 4) * 4) + startSecIndexCount) - startIndexSecCount) {
-                                    //     return null
-                                    // }
-                                    lastThirddIndex = ind
-
-                                    // debugger
-                                    isThirdLoopEnd = false
-                                    return (
-                                        <div className={styles.test_content_third_content_4_b}>
-
-                                            <div className={styles.test_content_third_content_4_1_2}>
-                                                <div className={styles.test_content_third_content_4_1_2_1}>
-                                                    <div className={styles.test_content_third_content_4_1_2_1_1}>
-                                                        {/* <div className={styles.test_content_third_content_4_1_2_1_1_1}></div> */}
-                                                        <div className={styles.test_content_third_content_4_1_2_1_1_1_1}>
-                                                            A
-                                                        </div>
-                                                        <div className={styles.test_content_third_content_4_1_2_1_1_1_1}>
-                                                            B
-                                                        </div>
-                                                        <div className={styles.test_content_third_content_4_1_2_1_1_1_1}>
-                                                            C
-                                                        </div>
-                                                        <div className={styles.test_content_third_content_4_1_2_1_1_1_1}>
-                                                            D
-                                                        </div>
-                                                    </div>
-                                                    <div className={styles.test_content_third_content_4_1_2_1_2}>
-                                                        {
-                                                            [...new Array(Number(chAnsQuestCountItem.shortAnswerBQuest))].map((va1l, ind1) => {
-
-                                                                if (!isThirdLoopEnd && ind1 > lastThirdIndex || ind === 0 && ind1 === 0) {
-                                                                    if (ind1 % 3 === 0 && ind1 !== 0) {
-                                                                        isThirdLoopEnd = true
-                                                                        lastThirdIndex = ind1
-                                                                        return null
-                                                                    } else {
-                                                                        countBg += 1
-                                                                        return (
-                                                                            <div key={ind1} className={styles.test_content_third_content_4_1_1}>
-
-                                                                                <div className={styles.test_content_third_content_4_1_1_1}>
-                                                                                    {countBg}
-                                                                                </div>
-                                                                                <div className={styles.test_content_third_content_4_1_1_2}>
-                                                                                    <div className={styles.test_content_third_content_4_1_1_2_1}>
-                                                                                        <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
-                                                                                    </div>
-                                                                                    <div className={styles.test_content_third_content_4_1_1_2_1}>
-                                                                                        <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
-                                                                                    </div>
-                                                                                    <div className={styles.test_content_third_content_4_1_1_2_1}>
-                                                                                        <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
-                                                                                    </div>
-                                                                                    <div className={styles.test_content_third_content_4_1_1_2_1}>
-                                                                                        <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        )
-                                                                    }
-                                                                } else if (ind1 === lastThirdIndex) {
-                                                                    countBg += 1
-                                                                    return (
-                                                                        (
-                                                                            <div key={ind} className={styles.test_content_third_content_4_1_1}>
-                                                                                <div className={styles.test_content_third_content_4_1_1_1}>
-                                                                                    {countBg}
-                                                                                </div>
-                                                                                <div className={styles.test_content_third_content_4_1_1_2}>
-                                                                                    <div className={styles.test_content_third_content_4_1_1_2_1}>
-                                                                                        <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
-                                                                                    </div>
-                                                                                    <div className={styles.test_content_third_content_4_1_1_2_1}>
-                                                                                        <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
-                                                                                    </div>
-                                                                                    <div className={styles.test_content_third_content_4_1_1_2_1}>
-                                                                                        <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
-                                                                                    </div>
-                                                                                    <div className={styles.test_content_third_content_4_1_1_2_1}>
-                                                                                        <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        )
-                                                                    )
-                                                                }
-                                                            })
-                                                        }
-
-                                                    </div>
-
-                                                </div>
-
-                                            </div>
-
-                                        </div>
-                                    )
-                                })
-                            }
-                            {/* </div>
-                            </div> */}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                            {/* wdqqwqwdqwd */}
-
-
-
-                            {
-                                [...new Array(infoForthSettings)].map((val1, ind1) => {
-                                    // debugger
-                                    isForthLoopEnd = false
-                                    return (
-                                        <div className={styles.test_content_third_content_3}>
-                                            {
-                                                Number(infoForthSettings.toFixed(1)[infoForthSettings.toFixed(1).length - 1]) > 7 && ind1 !== 0
-                                                    ?
-                                                    null
-                                                    :
-                                                    <div className={styles.test_content_third_content_3_title}>
-                                                        Ընտրովի պատասխանով առաջադրանքներ
-                                                    </div>
-                                            }
-                                            <div className={styles.test_content_third_content_3_2}>
-                                                <div className={styles.test_content_third_content_3_2_1}>
-                                                    Պատասխանի համարը
-                                                </div>
-                                                <div className={styles.test_content_third_content_3_2_2}>
-                                                    <span>a</span>
-                                                    <span>b</span>
-                                                    <span>c</span>
-                                                    <span>d</span>
-                                                </div>
-                                                <div className={styles.test_content_third_content_3_2_3}>
-                                                    {
-                                                        [...new Array(Number(chAnsQuestCountItem.chooseAnswerBQuest))].map((val, ind) => {
-                                                            // debugger
-                                                            // console.log(initialFIndex, 'initialFIndexinitialFIndex')
-
-                                                            if (!isForthLoopEnd && ind > lastForthIndex || ind === 0 && ind1 === 0) {
-                                                                // initialFIndex += 1
-                                                                if ((ind + 1) % 19 === 0) {
-                                                                    isForthLoopEnd = true
-                                                                    lastForthIndex = ind
-                                                                    return null
-                                                                } else {
-                                                                    countBg += 1
-                                                                    return (
-                                                                        <div key={ind} className={styles.test_content_third_content_3_2_3_1}>
-                                                                            <div className={styles.test_content_third_content_3_2_3_1_1}>
-                                                                                {countBg}
-                                                                            </div>
-                                                                            <div className={styles.test_content_third_content_3_2_3_1_2}>
-                                                                                <form action="">
-                                                                                    <div className={styles.test_content_third_content_3_2_3_1_2_1}>
-                                                                                        <input type="radio" name='1' />
-                                                                                    </div>
-                                                                                    <div className={styles.test_content_third_content_3_2_3_1_2_1}>
-                                                                                        <input type="radio" name='1' />
-                                                                                    </div>
-                                                                                    <div className={styles.test_content_third_content_3_2_3_1_2_1}>
-                                                                                        <input type="radio" name='1' />
-                                                                                    </div>
-                                                                                    <div className={styles.test_content_third_content_3_2_3_1_2_1}>
-                                                                                        <input type="radio" name='1' />
-                                                                                    </div>
-                                                                                </form>
+                                                                        <div className={styles.test_content_third_content_4_1_b}>
+                                                                            <div className={styles.test_content_third_content_4_1_overlay}>
+                                                                                {
+                                                                                    [...new Array(Number(val.countValue))].map((val1, ind1) => {
+                                                                                        // debugger
+                                                                                        if (!isSecLoopEnd && ind1 > lastSecIndex || ind === 0 && ind1 === 0) {
+                                                                                            if (ind1 % 3 === 0 && ind1 !== 0) {
+                                                                                                isSecLoopEnd = true
+                                                                                                lastSecIndex = ind1
+                                                                                                return null
+                                                                                            } else {
+                                                                                                countBg += 1
+                                                                                                return (
+                                                                                                    <div key={ind} className={styles.test_content_third_content_4_1_1}>
+                                                                                                        <div className={styles.test_content_third_content_4_1_1_1}>
+                                                                                                            {countBg}
+                                                                                                        </div>
+                                                                                                        <div className={styles.test_content_third_content_4_1_1_2}>
+                                                                                                            <div className={styles.test_content_third_content_4_1_1_2_1}>
+                                                                                                                <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
+
+                                                                                                            </div>
+                                                                                                            <div className={styles.test_content_third_content_4_1_1_2_1}>
+                                                                                                                <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
+                                                                                                            </div>
+                                                                                                            <div className={styles.test_content_third_content_4_1_1_2_1}>
+                                                                                                                <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
+                                                                                                            </div>
+                                                                                                            <div className={styles.test_content_third_content_4_1_1_2_1}>
+                                                                                                                <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
+                                                                                                            </div>
+                                                                                                            <div className={styles.test_content_third_content_4_1_1_2_1}>
+                                                                                                                <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                )
+                                                                                            }
+                                                                                        } else if (ind1 === lastSecIndex) {
+                                                                                            countBg += 1
+                                                                                            return (
+                                                                                                (
+                                                                                                    <div key={ind} className={styles.test_content_third_content_4_1_1}>
+                                                                                                        <div className={styles.test_content_third_content_4_1_1_1}>
+                                                                                                            {countBg}
+                                                                                                        </div>
+                                                                                                        <div className={styles.test_content_third_content_4_1_1_2}>
+                                                                                                            <div className={styles.test_content_third_content_4_1_1_2_1}>
+                                                                                                                <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
+                                                                                                            </div>
+                                                                                                            <div className={styles.test_content_third_content_4_1_1_2_1}>
+                                                                                                                <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
+                                                                                                            </div>
+                                                                                                            <div className={styles.test_content_third_content_4_1_1_2_1}>
+                                                                                                                <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
+                                                                                                            </div>
+                                                                                                            <div className={styles.test_content_third_content_4_1_1_2_1}>
+                                                                                                                <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
+                                                                                                            </div>
+                                                                                                            <div className={styles.test_content_third_content_4_1_1_2_1}>
+                                                                                                                <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                )
+                                                                                            )
+                                                                                        }
+                                                                                    })
+                                                                                }
                                                                             </div>
                                                                         </div>
-                                                                    )
-                                                                }
-                                                            }
-
-                                                        })
-                                                    }
-                                                </div>
-                                                <div className={styles.test_content_third_content_3_2_2}>
-                                                    <span>a</span>
-                                                    <span>b</span>
-                                                    <span>c</span>
-                                                    <span>d</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    )
-                                })
-                            }
-
-                            {/* dddddddddddddddddd */}
-
-                            {
-                                [...new Array(infoFivthSettings)].map((val, ind) => {
-                                    // debugger
-                                    isFivthLoopEnd = false
-                                    return (
-                                        <div className={styles.test_content_third_content_4_b}>
-                                            {
-                                                ind === 0 || ind % 2 === 0
-                                                    ?
-                                                    <div className={styles.test_content_third_content_3_title}>
-                                                        Կարճ պատասխանով առաջադրանքներ
-                                                    </div>
-                                                    :
-                                                    <div>
-                                                    </div>
-                                            }
-
-                                            <div className={styles.test_content_third_content_4_1_b}>
-                                                <div className={styles.test_content_third_content_4_1_overlay}>
-                                                    {
-                                                        [...new Array(Number(chAnsQuestCountItem.shortAnswerCQuest))].map((val1, ind1) => {
-                                                            // debugger
-                                                            if (!isFivthLoopEnd && ind1 > lastFivthIndex || ind === 0 && ind1 === 0) {
-                                                                if (ind1 % 3 === 0 && ind1 !== 0) {
-                                                                    isFivthLoopEnd = true
-                                                                    lastFivthIndex = ind1
-                                                                    return null
-                                                                } else {
-                                                                    countBg += 1
-                                                                    return (
-                                                                        <div key={ind} className={styles.test_content_third_content_4_1_1}>
-                                                                            <div className={styles.test_content_third_content_4_1_1_1}>
-                                                                                {countBg}
-                                                                            </div>
-                                                                            <div className={styles.test_content_third_content_4_1_1_2}>
-                                                                                <div className={styles.test_content_third_content_4_1_1_2_1}>
-                                                                                    <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
-                                                                                </div>
-                                                                                <div className={styles.test_content_third_content_4_1_1_2_1}>
-                                                                                    <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
-                                                                                </div>
-                                                                                <div className={styles.test_content_third_content_4_1_1_2_1}>
-                                                                                    <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
-                                                                                </div>
-                                                                                <div className={styles.test_content_third_content_4_1_1_2_1}>
-                                                                                    <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
-                                                                                </div>
-                                                                                <div className={styles.test_content_third_content_4_1_1_2_1}>
-                                                                                    <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
-                                                                                </div>
-                                                                                <div className={styles.test_content_third_content_4_1_1_2_1}>
-                                                                                    <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    )
-                                                                }
-                                                            } else if (ind1 === lastFivthIndex) {
-                                                                countBg += 1
-                                                                return (
-                                                                    (
-                                                                        <div key={ind} className={styles.test_content_third_content_4_1_1}>
-                                                                            <div className={styles.test_content_third_content_4_1_1_1}>
-                                                                                {countBg}
-                                                                            </div>
-                                                                            <div className={styles.test_content_third_content_4_1_1_2}>
-                                                                                <div className={styles.test_content_third_content_4_1_1_2_1}>
-                                                                                    <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
-                                                                                </div>
-                                                                                <div className={styles.test_content_third_content_4_1_1_2_1}>
-                                                                                    <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
-                                                                                </div>
-                                                                                <div className={styles.test_content_third_content_4_1_1_2_1}>
-                                                                                    <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
-                                                                                </div>
-                                                                                <div className={styles.test_content_third_content_4_1_1_2_1}>
-                                                                                    <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
-                                                                                </div>
-                                                                                <div className={styles.test_content_third_content_4_1_1_2_1}>
-                                                                                    <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
-                                                                                </div>
-                                                                                <div className={styles.test_content_third_content_4_1_1_2_1}>
-                                                                                    <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    )
+                                                                    </div>
                                                                 )
-                                                            }
-                                                        })
-                                                    }
-                                                </div>
-                                            </div>
-                                        </div>
-                                    )
-                                })
-                            }
-
-
-
-                            {
-                                [...new Array(infoSixthSettings)].map((val, ind) => {
-                                    // debugger
-                                    isSixthLoopEnd = false
-                                    return (
-                                        <div className={styles.test_content_third_content_4_b}>
-                                            {
-                                                ind === 0 || ind % 2 === 0
-                                                    ?
-                                                    <div className={styles.test_content_third_content_3_title}>
-                                                        Կարճ պատասխանով առաջադրանքներ
-                                                    </div>
-                                                    :
-                                                    <div>
-                                                    </div>
-                                            }
-                                            <div className={styles.test_content_third_content_4_1_2}>
-                                                <div className={styles.test_content_third_content_4_1_2_1}>
-                                                    <div className={styles.test_content_third_content_4_1_2_1_1}>
-                                                        {/* <div className={styles.test_content_third_content_4_1_2_1_1_1}></div> */}
-                                                        <div className={styles.test_content_third_content_4_1_2_1_1_1_1}>
-                                                            A
-                                                        </div>
-                                                        <div className={styles.test_content_third_content_4_1_2_1_1_1_1}>
-                                                            B
-                                                        </div>
-                                                        <div className={styles.test_content_third_content_4_1_2_1_1_1_1}>
-                                                            C
-                                                        </div>
-                                                        <div className={styles.test_content_third_content_4_1_2_1_1_1_1}>
-                                                            D
-                                                        </div>
-                                                    </div>
-                                                    <div className={styles.test_content_third_content_4_1_2_1_2}>
-                                                        {
-                                                            [...new Array(Number(chAnsQuestCountItem.shortAnswerDQuest))].map((va1l, ind1) => {
-
-                                                                if (!isSixthLoopEnd && ind1 > lastSixthIndex || ind === 0 && ind1 === 0) {
-                                                                    if (ind1 % 3 === 0 && ind1 !== 0) {
-                                                                        isSixthLoopEnd = true
-                                                                        lastSixthIndex = ind1
-                                                                        return null
-                                                                    } else {
-                                                                        countBg += 1
-                                                                        return (
-                                                                            <div key={ind1} className={styles.test_content_third_content_4_1_1}>
-
-                                                                                <div className={styles.test_content_third_content_4_1_1_1}>
-                                                                                    {countBg}
-                                                                                </div>
-                                                                                <div className={styles.test_content_third_content_4_1_1_2}>
-                                                                                    <div className={styles.test_content_third_content_4_1_1_2_1}>
-                                                                                        <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
-                                                                                    </div>
-                                                                                    <div className={styles.test_content_third_content_4_1_1_2_1}>
-                                                                                        <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
-                                                                                    </div>
-                                                                                    <div className={styles.test_content_third_content_4_1_1_2_1}>
-                                                                                        <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
-                                                                                    </div>
-                                                                                    <div className={styles.test_content_third_content_4_1_1_2_1}>
-                                                                                        <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        )
-                                                                    }
-                                                                } else if (ind1 === lastSixthIndex) {
-                                                                    countBg += 1
-                                                                    return (
-                                                                        (
-                                                                            <div key={ind} className={styles.test_content_third_content_4_1_1}>
-                                                                                <div className={styles.test_content_third_content_4_1_1_1}>
-                                                                                    {countBg}
-                                                                                </div>
-                                                                                <div className={styles.test_content_third_content_4_1_1_2}>
-                                                                                    <div className={styles.test_content_third_content_4_1_1_2_1}>
-                                                                                        <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
-                                                                                    </div>
-                                                                                    <div className={styles.test_content_third_content_4_1_1_2_1}>
-                                                                                        <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
-                                                                                    </div>
-                                                                                    <div className={styles.test_content_third_content_4_1_1_2_1}>
-                                                                                        <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
-                                                                                    </div>
-                                                                                    <div className={styles.test_content_third_content_4_1_1_2_1}>
-                                                                                        <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        )
-                                                                    )
-                                                                }
                                                             })
                                                         }
-
                                                     </div>
-
                                                 </div>
+                                            </>
+                                        )
 
-                                            </div>
+                                    } else if (val.selectedValue === 'shortandvariant') {
 
-                                        </div>
-                                    )
+                                        infoThirdSettings = Math.ceil(Number(val.countValue) / 3)
+                                        let isThirdLoopEnd = false
+                                        let lastThirdIndex = 0
+
+                                        return (
+                                            <>
+                                                {
+                                                    [...new Array(infoSecSettings ? (4 - (infoSecSettings - ((Math.floor((infoSecSettings - startSecIndexCount) / 4) * 4) + startSecIndexCount))) : null)].map((val2, ind) => {
+                                                        // debugger
+                                                        startIndexSecCount = (infoSecSettings - ((Math.floor((infoSecSettings - startSecIndexCount) / 4) * 4) + startSecIndexCount))
+                                                        startSecIndex = 4 - (infoSecSettings - ((Math.floor((infoSecSettings - startSecIndexCount) / 4) * 4) + startSecIndexCount))
+
+
+                                                        return (
+                                                            <div className={styles.test_content_third_content_4_b}>
+
+                                                                <div className={styles.test_content_third_content_4_1_2}>
+                                                                    <div className={styles.test_content_third_content_4_1_2_1}>
+                                                                        <div className={styles.test_content_third_content_4_1_2_1_1}>
+                                                                            {/* <div className={styles.test_content_third_content_4_1_2_1_1_1}></div> */}
+                                                                            <div className={styles.test_content_third_content_4_1_2_1_1_1_1}>
+                                                                                A
+                                                                            </div>
+                                                                            <div className={styles.test_content_third_content_4_1_2_1_1_1_1}>
+                                                                                B
+                                                                            </div>
+                                                                            <div className={styles.test_content_third_content_4_1_2_1_1_1_1}>
+                                                                                C
+                                                                            </div>
+                                                                            <div className={styles.test_content_third_content_4_1_2_1_1_1_1}>
+                                                                                D
+                                                                            </div>
+                                                                        </div>
+                                                                        <div className={styles.test_content_third_content_4_1_2_1_2}>
+                                                                            {
+                                                                                [...new Array(Number(infoThirdSettings))].map((va1l, ind1) => {
+
+                                                                                    if (!isThirdLoopEnd && ind1 > lastThirdIndex || ind === 0 && ind1 === 0) {
+                                                                                        if (ind1 % 3 === 0 && ind1 !== 0) {
+                                                                                            isThirdLoopEnd = true
+                                                                                            lastThirdIndex = ind1
+                                                                                            return null
+                                                                                        } else {
+                                                                                            countBg += 1
+                                                                                            return (
+                                                                                                <div key={ind1} className={styles.test_content_third_content_4_1_1}>
+
+                                                                                                    <div className={styles.test_content_third_content_4_1_1_1}>
+                                                                                                        {countBg}
+                                                                                                    </div>
+                                                                                                    <div className={styles.test_content_third_content_4_1_1_2}>
+                                                                                                        <div className={styles.test_content_third_content_4_1_1_2_1}>
+                                                                                                            <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
+                                                                                                        </div>
+
+                                                                                                        <div className={styles.test_content_third_content_4_1_1_2_1}>
+                                                                                                            <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
+                                                                                                        </div>
+                                                                                                        <div className={styles.test_content_third_content_4_1_1_2_1}>
+                                                                                                            <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
+                                                                                                        </div>
+                                                                                                        <div className={styles.test_content_third_content_4_1_1_2_1}>
+                                                                                                            <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            )
+                                                                                        }
+                                                                                    } else if (ind1 === lastThirdIndex) {
+                                                                                        countBg += 1
+                                                                                        return (
+                                                                                            (
+                                                                                                <div key={ind} className={styles.test_content_third_content_4_1_1}>
+                                                                                                    <div className={styles.test_content_third_content_4_1_1_1}>
+                                                                                                        {countBg}
+                                                                                                    </div>
+                                                                                                    <div className={styles.test_content_third_content_4_1_1_2}>
+                                                                                                        <div className={styles.test_content_third_content_4_1_1_2_1}>
+                                                                                                            <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
+                                                                                                        </div>
+                                                                                                        <div className={styles.test_content_third_content_4_1_1_2_1}>
+                                                                                                            <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
+                                                                                                        </div>
+                                                                                                        <div className={styles.test_content_third_content_4_1_1_2_1}>
+                                                                                                            <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
+                                                                                                        </div>
+                                                                                                        <div className={styles.test_content_third_content_4_1_1_2_1}>
+                                                                                                            <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            )
+                                                                                        )
+                                                                                    }
+                                                                                })
+                                                                            }
+
+                                                                        </div>
+
+                                                                    </div>
+
+                                                                </div>
+
+                                                            </div>
+                                                        )
+                                                    })
+                                                }
+
+
+                                                {
+                                                    [...new Array(infoThirdSettings)].map((val2, ind) => {
+
+                                                        if (startSecIndex > 0) {
+                                                            startSecIndex--
+                                                            return null
+                                                        }
+                                                        // console.log(Math.floor((((infoSecSettings - startSecIndexCount) / 4) * 4) + startSecIndexCount), 'ee')
+                                                        // console.log(infoThirdSettings - startIndexSecCount, 'infoThirdSettings - startIndexSecCount')
+                                                        // debugger
+                                                        // if (ind >= Math.floor((((infoSecSettings - startSecIndexCount) / 4) * 4) + startSecIndexCount) - startIndexSecCount) {
+                                                        //     return null
+                                                        // }
+                                                        lastThirddIndex = ind
+
+                                                        // debugger
+                                                        isThirdLoopEnd = false
+                                                        return (
+                                                            <div className={styles.test_content_third_content_4_b}>
+
+                                                                <div className={styles.test_content_third_content_4_1_2}>
+                                                                    <div className={styles.test_content_third_content_4_1_2_1}>
+                                                                        <div className={styles.test_content_third_content_4_1_2_1_1}>
+                                                                            {/* <div className={styles.test_content_third_content_4_1_2_1_1_1}></div> */}
+                                                                            <div className={styles.test_content_third_content_4_1_2_1_1_1_1}>
+                                                                                A
+                                                                            </div>
+                                                                            <div className={styles.test_content_third_content_4_1_2_1_1_1_1}>
+                                                                                B
+                                                                            </div>
+                                                                            <div className={styles.test_content_third_content_4_1_2_1_1_1_1}>
+                                                                                C
+                                                                            </div>
+                                                                            <div className={styles.test_content_third_content_4_1_2_1_1_1_1}>
+                                                                                D
+                                                                            </div>
+                                                                        </div>
+                                                                        <div className={styles.test_content_third_content_4_1_2_1_2}>
+                                                                            {
+                                                                                [...new Array(Number(val.countValue))].map((va1l, ind1) => {
+
+                                                                                    if (!isThirdLoopEnd && ind1 > lastThirdIndex || ind === 0 && ind1 === 0) {
+                                                                                        if (ind1 % 3 === 0 && ind1 !== 0) {
+                                                                                            isThirdLoopEnd = true
+                                                                                            lastThirdIndex = ind1
+                                                                                            return null
+                                                                                        } else {
+                                                                                            countBg += 1
+                                                                                            return (
+                                                                                                <div key={ind1} className={styles.test_content_third_content_4_1_1}>
+
+                                                                                                    <div className={styles.test_content_third_content_4_1_1_1}>
+                                                                                                        {countBg}
+                                                                                                    </div>
+                                                                                                    <div className={styles.test_content_third_content_4_1_1_2}>
+                                                                                                        <div className={styles.test_content_third_content_4_1_1_2_1}>
+                                                                                                            <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
+                                                                                                        </div>
+                                                                                                        <div className={styles.test_content_third_content_4_1_1_2_1}>
+                                                                                                            <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
+                                                                                                        </div>
+                                                                                                        <div className={styles.test_content_third_content_4_1_1_2_1}>
+                                                                                                            <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
+                                                                                                        </div>
+                                                                                                        <div className={styles.test_content_third_content_4_1_1_2_1}>
+                                                                                                            <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            )
+                                                                                        }
+                                                                                    } else if (ind1 === lastThirdIndex) {
+                                                                                        countBg += 1
+                                                                                        return (
+                                                                                            (
+                                                                                                <div key={ind} className={styles.test_content_third_content_4_1_1}>
+                                                                                                    <div className={styles.test_content_third_content_4_1_1_1}>
+                                                                                                        {countBg}
+                                                                                                    </div>
+                                                                                                    <div className={styles.test_content_third_content_4_1_1_2}>
+                                                                                                        <div className={styles.test_content_third_content_4_1_1_2_1}>
+                                                                                                            <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
+                                                                                                        </div>
+                                                                                                        <div className={styles.test_content_third_content_4_1_1_2_1}>
+                                                                                                            <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
+                                                                                                        </div>
+                                                                                                        <div className={styles.test_content_third_content_4_1_1_2_1}>
+                                                                                                            <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
+                                                                                                        </div>
+                                                                                                        <div className={styles.test_content_third_content_4_1_1_2_1}>
+                                                                                                            <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            )
+                                                                                        )
+                                                                                    }
+                                                                                })
+                                                                            }
+
+                                                                        </div>
+
+                                                                    </div>
+
+                                                                </div>
+
+                                                            </div>
+                                                        )
+                                                    })
+                                                }
+
+
+                                            </>
+                                        )
+
+
+                                    }
                                 })
                             }
+
+
+
+                            {/* second part */}
+
+
+
+
+
+
+
+                            {/* third part */}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            {/* sxal patasxanner */}
 
                             <div className={styles.test_content_third_content_6}>
                                 <div className={styles.test_content_third_content_3_title}>
                                     Ամբողջ ձևաթղթում սխալ նշված պատասխանները փոխելու տեղը
                                 </div>
                                 <div className={styles.test_content_third_content_6_1}>
+
                                     {
-                                        [...new Array(infoSeventhSettings)].map((val1, ind1) => {
-                                            // debugger
-                                            isSeventhLoopEnd = false
+                                        arrWrInfo.map((val) => {
 
-                                            return (
-                                                <div className={styles.test_content_third_content_6_1_1}>
-                                                    <div className={styles.test_content_third_content_6_1_1_2}>
+                                            if (val.selectedValue === 'wrchoose') {
+                                                infoSeventhSettings = Math.ceil(Number(val.countValue) / 10)
+                                                let isSeventhLoopEnd = false
+                                                let lastSeventhIndex = 0
+                                                return (
 
-                                                        <div className={styles.test_content_third_content_3}>
-                                                            <div className={styles.test_content_third_content_3_2}>
-                                                                <div className={styles.test_content_third_content_3_2_1}>
-                                                                    Ընտրովի պատասխան
-                                                                </div>
-                                                                <div className={styles.test_content_third_content_3_2_2}>
-                                                                    <span>a</span>
-                                                                    <span>b</span>
-                                                                    <span>c</span>
-                                                                    <span>d</span>
-                                                                </div>
-                                                                <div className={styles.test_content_third_content_6_1_1_2_1_1}>
+                                                    [...new Array(infoSeventhSettings)].map((val1, ind1) => {
+                                                        // debugger
+                                                        isSeventhLoopEnd = false
 
-                                                                    {
-                                                                        [...new Array(Number(chAnsQuestCountItem.shortAnswerEQuest))].map((val, ind) => {
+                                                        return (
+                                                            <div key={ind1} className={styles.test_content_third_content_6_1_1}>
+                                                                <div className={styles.test_content_third_content_6_1_1_2}>
 
-                                                                            if (!isSeventhLoopEnd && ind > lastSeventhIndex || ind === 0 && ind1 === 0) {
-                                                                                // initialFIndex += 1
-                                                                                // debugger
-                                                                                if ((ind + 1) % 10 === 0) {
-                                                                                    isSeventhLoopEnd = true
-                                                                                    lastSeventhIndex = ind
-                                                                                    return null
-                                                                                } else {
+                                                                    <div className={styles.test_content_third_content_3}>
+                                                                        <div className={styles.test_content_third_content_3_2}>
+                                                                            <div className={styles.test_content_third_content_3_2_1}>
+                                                                                Ընտրովի պատասխան
+                                                                            </div>
+                                                                            <div className={styles.test_content_third_content_3_2_2}>
+                                                                                <span>a</span>
+                                                                                <span>b</span>
+                                                                                <span>c</span>
+                                                                                <span>d</span>
+                                                                            </div>
+                                                                            <div className={styles.test_content_third_content_6_1_1_2_1_1}>
 
-                                                                                    return (
-                                                                                        <div key={ind}>
-                                                                                            <div className={styles.test_content_third_content_6_1_1_2_1_1_1}>
-                                                                                                <div className={styles.test_content_third_content_6_1_1_2_1}>
-                                                                                                    <div className={styles.test_content_third_content_4_1_1_2_1_sec}>
-                                                                                                        <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
+                                                                                {
+                                                                                    [...new Array(Number(val.countValue))].map((val, ind) => {
+
+                                                                                        if (!isSeventhLoopEnd && ind > lastSeventhIndex || ind === 0 && ind1 === 0) {
+                                                                                            // initialFIndex += 1
+                                                                                            // debugger
+                                                                                            if ((ind + 1) % 10 === 0) {
+                                                                                                isSeventhLoopEnd = true
+                                                                                                lastSeventhIndex = ind
+                                                                                                return null
+                                                                                            } else {
+
+                                                                                                return (
+                                                                                                    <div key={ind}>
+                                                                                                        <div className={styles.test_content_third_content_6_1_1_2_1_1_1}>
+                                                                                                            <div className={styles.test_content_third_content_6_1_1_2_1}>
+                                                                                                                <div className={styles.test_content_third_content_4_1_1_2_1_sec}>
+                                                                                                                    <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
+                                                                                                                </div>
+                                                                                                                <div className={styles.test_content_third_content_4_1_1_2_1}>
+                                                                                                                    <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
+                                                                                                                </div>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                        <div className={styles.test_content_third_content_6_1_1_2_1_1_2}>
+                                                                                                            <div className={styles.test_content_third_content_3_2_3}>
+                                                                                                                <div className={styles.test_content_third_content_3_2_3_1}>
+
+                                                                                                                    <div className={styles.test_content_third_content_3_2_3_1_2}>
+                                                                                                                        <form action="">
+                                                                                                                            <div className={styles.test_content_third_content_3_2_3_1_2_1}>
+                                                                                                                                <input type="radio" name='1' />
+                                                                                                                            </div>
+                                                                                                                            <div className={styles.test_content_third_content_3_2_3_1_2_1}>
+                                                                                                                                <input type="radio" name='1' />
+                                                                                                                            </div>
+                                                                                                                            <div className={styles.test_content_third_content_3_2_3_1_2_1}>
+                                                                                                                                <input type="radio" name='1' />
+                                                                                                                            </div>
+                                                                                                                            <div className={styles.test_content_third_content_3_2_3_1_2_1}>
+                                                                                                                                <input type="radio" name='1' />
+                                                                                                                            </div>
+                                                                                                                        </form>
+                                                                                                                    </div>
+                                                                                                                </div>
+                                                                                                            </div>
+                                                                                                        </div>
                                                                                                     </div>
-                                                                                                    <div className={styles.test_content_third_content_4_1_1_2_1}>
-                                                                                                        <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
-                                                                                                    </div>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                            <div className={styles.test_content_third_content_6_1_1_2_1_1_2}>
-                                                                                                <div className={styles.test_content_third_content_3_2_3}>
-                                                                                                    <div className={styles.test_content_third_content_3_2_3_1}>
 
-                                                                                                        <div className={styles.test_content_third_content_3_2_3_1_2}>
-                                                                                                            <form action="">
-                                                                                                                <div className={styles.test_content_third_content_3_2_3_1_2_1}>
-                                                                                                                    <input type="radio" name='1' />
-                                                                                                                </div>
-                                                                                                                <div className={styles.test_content_third_content_3_2_3_1_2_1}>
-                                                                                                                    <input type="radio" name='1' />
-                                                                                                                </div>
-                                                                                                                <div className={styles.test_content_third_content_3_2_3_1_2_1}>
-                                                                                                                    <input type="radio" name='1' />
-                                                                                                                </div>
-                                                                                                                <div className={styles.test_content_third_content_3_2_3_1_2_1}>
-                                                                                                                    <input type="radio" name='1' />
-                                                                                                                </div>
-                                                                                                            </form>
+
+                                                                                                )
+                                                                                            }
+                                                                                        }
+                                                                                    })
+                                                                                }
+
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        )
+                                                    })
+
+                                                )
+                                            } else if (val.selectedValue === 'wrshort') {
+
+                                                infoEightSettings = Math.ceil(Number(val.countValue) / 3)
+                                                let isEightLoopEnd = false
+                                                let lastEightIndex = 0
+                                                return (
+                                                    [...new Array(infoEightSettings)].map((val2, ind) => {
+                                                        // debugger
+                                                        isEightLoopEnd = false
+                                                        return (
+                                                            <div className={styles.test_content_third_content_6_1_2_33}>
+                                                                {
+                                                                    ind === 0
+                                                                        ?
+                                                                        <div className={styles.test_content_third_content_3_2_1}>
+                                                                            Կարճ պատասխանով
+                                                                        </div>
+                                                                        :
+                                                                        null
+                                                                }
+                                                                <div className={styles.test_content_third_content_4_1}>
+                                                                    <div className={styles.test_content_third_content_4_1_overlay_ss}>
+                                                                        {
+                                                                            [...new Array(Number(val.countValue))].map((val, ind1) => {
+                                                                                if (!isEightLoopEnd && ind1 > lastEightIndex || ind === 0 && ind1 === 0) {
+                                                                                    if (ind1 % 3 === 0 && ind1 !== 0) {
+                                                                                        isEightLoopEnd = true
+                                                                                        lastEightIndex = ind1
+                                                                                        return null
+                                                                                    } else {
+                                                                                        return (
+                                                                                            <div key={ind} className={styles.test_content_third_content_4_1_1}>
+                                                                                                <div className={styles.test_content_third_content_6_1_1_2_1_1_1}>
+                                                                                                    <div className={styles.test_content_third_content_4_1_1_2_1_thrid}>
+                                                                                                        <div className={styles.test_content_third_content_4_1_1_2_1_thrid_item}>
+                                                                                                            <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
+                                                                                                        </div>
+                                                                                                        <div className={styles.test_content_third_content_4_1_1_2_1_thrid_item}>
+                                                                                                            <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
                                                                                                         </div>
                                                                                                     </div>
                                                                                                 </div>
+                                                                                                <div className={styles.test_content_third_content_4_1_1_2}>
+                                                                                                    <div className={styles.test_content_third_content_4_1_1_2_1_thrid_ittm}>
+                                                                                                        <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
+                                                                                                    </div>
+                                                                                                    <div className={styles.test_content_third_content_4_1_1_2_1_thrid_ittm}>
+                                                                                                        <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
+                                                                                                    </div>
+                                                                                                    <div className={styles.test_content_third_content_4_1_1_2_1_thrid_ittm}>
+                                                                                                        <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
+                                                                                                    </div>
+                                                                                                    <div className={styles.test_content_third_content_4_1_1_2_1_thrid_ittm}>
+                                                                                                        <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
+                                                                                                    </div>
+                                                                                                </div>
                                                                                             </div>
-                                                                                        </div>
-
-
+                                                                                        )
+                                                                                    }
+                                                                                } else if (ind1 === lastEightIndex) {
+                                                                                    return (
+                                                                                        (
+                                                                                            <div key={ind} className={styles.test_content_third_content_4_1_1}>
+                                                                                                <div className={styles.test_content_third_content_6_1_1_2_1_1_1}>
+                                                                                                    <div className={styles.test_content_third_content_4_1_1_2_1_thrid}>
+                                                                                                        <div className={styles.test_content_third_content_4_1_1_2_1_thrid_item}>
+                                                                                                            <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
+                                                                                                        </div>
+                                                                                                        <div className={styles.test_content_third_content_4_1_1_2_1_thrid_item}>
+                                                                                                            <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                                <div className={styles.test_content_third_content_4_1_1_2}>
+                                                                                                    <div className={styles.test_content_third_content_4_1_1_2_1_thrid_ittm}>
+                                                                                                        <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
+                                                                                                    </div>
+                                                                                                    <div className={styles.test_content_third_content_4_1_1_2_1_thrid_ittm}>
+                                                                                                        <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
+                                                                                                    </div>
+                                                                                                    <div className={styles.test_content_third_content_4_1_1_2_1_thrid_ittm}>
+                                                                                                        <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
+                                                                                                    </div>
+                                                                                                    <div className={styles.test_content_third_content_4_1_1_2_1_thrid_ittm}>
+                                                                                                        <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        )
                                                                                     )
                                                                                 }
-                                                                            }
-                                                                        })
-                                                                    }
-
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            )
-                                        })
-                                    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-                                    {
-                                        [...new Array(infoEightSettings)].map((val, ind) => {
-                                            // debugger
-                                            isEightLoopEnd = false
-                                            return (
-                                                <div className={styles.test_content_third_content_6_1_2_33}>
-                                                    {
-                                                        ind === 0
-                                                            ?
-                                                            <div className={styles.test_content_third_content_3_2_1}>
-                                                                Կարճ պատասխանով
-                                                            </div>
-                                                            :
-                                                            null
-                                                    }
-                                                    <div className={styles.test_content_third_content_4_1}>
-                                                        <div className={styles.test_content_third_content_4_1_overlay_ss}>
-                                                            {
-                                                                [...new Array(Number(chAnsQuestCountItem.wrongChooseAnswerQuest))].map((val, ind1) => {
-                                                                    if (!isEightLoopEnd && ind1 > lastEightIndex || ind === 0 && ind1 === 0) {
-                                                                        if (ind1 % 3 === 0 && ind1 !== 0) {
-                                                                            isEightLoopEnd = true
-                                                                            lastEightIndex = ind1
-                                                                            return null
-                                                                        } else {
-                                                                            return (
-                                                                                <div key={ind} className={styles.test_content_third_content_4_1_1}>
-                                                                                    <div className={styles.test_content_third_content_6_1_1_2_1_1_1}>
-                                                                                        <div className={styles.test_content_third_content_4_1_1_2_1_thrid}>
-                                                                                            <div className={styles.test_content_third_content_4_1_1_2_1_thrid_item}>
-                                                                                                <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
-                                                                                            </div>
-                                                                                            <div className={styles.test_content_third_content_4_1_1_2_1_thrid_item}>
-                                                                                                <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                    <div className={styles.test_content_third_content_4_1_1_2}>
-                                                                                        <div className={styles.test_content_third_content_4_1_1_2_1_thrid_ittm}>
-                                                                                            <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
-                                                                                        </div>
-                                                                                        <div className={styles.test_content_third_content_4_1_1_2_1_thrid_ittm}>
-                                                                                            <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
-                                                                                        </div>
-                                                                                        <div className={styles.test_content_third_content_4_1_1_2_1_thrid_ittm}>
-                                                                                            <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
-                                                                                        </div>
-                                                                                        <div className={styles.test_content_third_content_4_1_1_2_1_thrid_ittm}>
-                                                                                            <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                            )
+                                                                            })
                                                                         }
-                                                                    } else if (ind1 === lastEightIndex) {
-                                                                        return (
-                                                                            (
-                                                                                <div key={ind} className={styles.test_content_third_content_4_1_1}>
-                                                                                    <div className={styles.test_content_third_content_6_1_1_2_1_1_1}>
-                                                                                        <div className={styles.test_content_third_content_4_1_1_2_1_thrid}>
-                                                                                            <div className={styles.test_content_third_content_4_1_1_2_1_thrid_item}>
-                                                                                                <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
-                                                                                            </div>
-                                                                                            <div className={styles.test_content_third_content_4_1_1_2_1_thrid_item}>
-                                                                                                <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                    <div className={styles.test_content_third_content_4_1_1_2}>
-                                                                                        <div className={styles.test_content_third_content_4_1_1_2_1_thrid_ittm}>
-                                                                                            <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
-                                                                                        </div>
-                                                                                        <div className={styles.test_content_third_content_4_1_1_2_1_thrid_ittm}>
-                                                                                            <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
-                                                                                        </div>
-                                                                                        <div className={styles.test_content_third_content_4_1_1_2_1_thrid_ittm}>
-                                                                                            <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
-                                                                                        </div>
-                                                                                        <div className={styles.test_content_third_content_4_1_1_2_1_thrid_ittm}>
-                                                                                            <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                            )
-                                                                        )
-                                                                    }
-                                                                })
-                                                            }
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            )
-                                        })
-                                    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                                    {
-                                        [...new Array(infoNinethSettings)].map((val, ind) => {
-                                            // debugger
-                                            isNinethLoopEnd = false
-                                            return (
-                                                <div className={styles.test_content_third_content_4}>
-                                                    {/* {
-                                                ind === 0 || ind % 2 === 0
-                                                    ?
-                                                    <div className={styles.test_content_third_content_3_title}>
-                                                        Կարճ պատասխանով առաջադրանքներ
-                                                    </div>
-                                                    :
-                                                    <div>
-                                                    </div>
-                                            } */}
-                                                    <div className={styles.test_content_third_content_4_1_2}>
-                                                        <div className={styles.test_content_third_content_4_1_2_1}>
-                                                            <div className={styles.test_content_third_content_4_1_2_1_1_sec}>
-                                                                {/* <div className={styles.test_content_third_content_4_1_2_1_1_1}></div> */}
-                                                                <div className={styles.test_content_third_content_4_1_2_1_1_1_1_sec}>
-                                                                    A
-                                                                </div>
-                                                                <div className={styles.test_content_third_content_4_1_2_1_1_1_1_sec}>
-                                                                    B
-                                                                </div>
-                                                                <div className={styles.test_content_third_content_4_1_2_1_1_1_1_sec}>
-                                                                    C
-                                                                </div>
-                                                                <div className={styles.test_content_third_content_4_1_2_1_1_1_1_sec}>
-                                                                    D
-                                                                </div>
-                                                            </div>
-                                                            <div className={styles.test_content_third_content_4_1_2_1_2}>
-                                                                {
-                                                                    [...new Array(Number(chAnsQuestCountItem.wrongShortAnswerQuest))].map((va1l, ind1) => {
-
-                                                                        if (!isNinethLoopEnd && ind1 > lastNinethIndex || ind === 0 && ind1 === 0) {
-                                                                            if (ind1 % 3 === 0 && ind1 !== 0) {
-                                                                                isNinethLoopEnd = true
-                                                                                lastNinethIndex = ind1
-                                                                                return null
-                                                                            } else {
-                                                                                return (
-                                                                                    <div key={ind} className={styles.test_content_third_content_4_1_1}>
-
-                                                                                        <div className={styles.test_content_third_content_6_1_1_2_1_1_1}>
-                                                                                            <div className={styles.test_content_third_content_4_1_1_2_1_thrid}>
-                                                                                                <div className={styles.test_content_third_content_4_1_1_2_1_thrid_item}>
-                                                                                                    <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
-                                                                                                </div>
-                                                                                                <div className={styles.test_content_third_content_4_1_1_2_1_thrid_item}>
-                                                                                                    <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                        <div className={styles.test_content_third_content_4_1_1_2}>
-                                                                                            <div className={styles.test_content_third_content_4_1_1_2_1_thrid_ittm}>
-                                                                                                <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
-                                                                                            </div>
-                                                                                            <div className={styles.test_content_third_content_4_1_1_2_1_thrid_ittm}>
-                                                                                                <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
-                                                                                            </div>
-                                                                                            <div className={styles.test_content_third_content_4_1_1_2_1_thrid_ittm}>
-                                                                                                <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
-                                                                                            </div>
-                                                                                            <div className={styles.test_content_third_content_4_1_1_2_1_thrid_ittm}>
-                                                                                                <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                )
-                                                                            }
-                                                                        } else if (ind1 === lastNinethIndex) {
-                                                                            return (
-                                                                                (
-                                                                                    <div key={ind} className={styles.test_content_third_content_4_1_1}>
-
-                                                                                        <div className={styles.test_content_third_content_6_1_1_2_1_1_1}>
-                                                                                            <div className={styles.test_content_third_content_4_1_1_2_1_thrid}>
-                                                                                                <div className={styles.test_content_third_content_4_1_1_2_1_thrid_item}>
-                                                                                                    <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
-                                                                                                </div>
-                                                                                                <div className={styles.test_content_third_content_4_1_1_2_1_thrid_item}>
-                                                                                                    <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                        <div className={styles.test_content_third_content_4_1_1_2}>
-                                                                                            <div className={styles.test_content_third_content_4_1_1_2_1_thrid_ittm}>
-                                                                                                <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
-                                                                                            </div>
-                                                                                            <div className={styles.test_content_third_content_4_1_1_2_1_thrid_ittm}>
-                                                                                                <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
-                                                                                            </div>
-                                                                                            <div className={styles.test_content_third_content_4_1_1_2_1_thrid_ittm}>
-                                                                                                <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
-                                                                                            </div>
-                                                                                            <div className={styles.test_content_third_content_4_1_1_2_1_thrid_ittm}>
-                                                                                                <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                )
-                                                                            )
-                                                                        }
-                                                                    })
-                                                                }
-
-                                                            </div>
-
-                                                        </div>
-
-                                                    </div>
-
-                                                </div>
-                                            )
-                                        })
-                                    }
-
-
-                                    {/* <div className={styles.test_content_third_content_6_1_2}>
-                                <div className={styles.test_content_third_content_6_1_2_1}>
-                                    <div className={styles.test_content_third_content_3_2_1}>
-                                        Կարճ պատասխանով
-                                    </div>
-                                    <div className={styles.test_content_third_content_4_1}>
-                                        <div className={styles.test_content_third_content_4_1_2}>
-                                            <div className={styles.test_content_third_content_4_1_2_1}>
-                                                <div className={styles.test_content_third_content_4_1_2_1_1}>
-                                                    <div className={styles.test_content_third_content_4_1_2_1_1_1_1}>
-                                                        A
-                                                    </div>
-                                                    <div className={styles.test_content_third_content_4_1_2_1_1_1_1}>
-                                                        B
-                                                    </div>
-                                                    <div className={styles.test_content_third_content_4_1_2_1_1_1_1}>
-                                                        C
-                                                    </div>
-                                                    <div className={styles.test_content_third_content_4_1_2_1_1_1_1}>
-                                                        D
-                                                    </div>
-                                                </div>
-                                                <div className={styles.test_content_third_content_4_1_2_1_2}>
-                                                    {
-                                                        [...new Array(Number(chAnsQuestCountItem.wrongShortAnswerQuest))].map((val, ind) => {
-                                                            return (
-                                                                <div key={ind} className={styles.test_content_third_content_4_1_1}>
-
-                                                                    <div className={styles.test_content_third_content_6_1_1_2_1_1_1}>
-                                                                        <div className={styles.test_content_third_content_6_1_1_2_1}>
-                                                                            <span>
-                                                                                <input type="number" />
-                                                                            </span>
-                                                                            <span>
-                                                                                <input type="number" />
-                                                                            </span>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div className={styles.test_content_third_content_4_1_1_2}>
-                                                                        <div className={styles.test_content_third_content_4_1_1_2_1}>
-                                                                            <input type="radio" name='short2' />
-                                                                        </div>
-                                                                        <div className={styles.test_content_third_content_4_1_1_2_1}>
-                                                                            <input type="radio" name='short2' />
-                                                                        </div>
-                                                                        <div className={styles.test_content_third_content_4_1_1_2_1}>
-                                                                            <input type="radio" name='short2' />
-                                                                        </div>
-                                                                        <div className={styles.test_content_third_content_4_1_1_2_1}>
-                                                                            <input type="radio" name='short2' />
-                                                                        </div>
                                                                     </div>
                                                                 </div>
-                                                            )
-                                                        })
-                                                    }
+                                                            </div>
+                                                        )
+                                                    })
 
-                                                </div>
+                                                )
+                                            } else {
+                                                infoNinethSettings = Math.ceil(Number(val.countValue) / 3)
+                                                let isNinethLoopEnd = false
+                                                let lastNinethIndex = 0
 
-                                            </div>
+                                                return (
+                                                    [...new Array(infoNinethSettings)].map((val1, ind) => {
+                                                        // debugger
+                                                        isNinethLoopEnd = false
+                                                        return (
+                                                            <div className={styles.test_content_third_content_4}>
+                                                                {/* {
+                                                            ind === 0 || ind % 2 === 0
+                                                                ?
+                                                                <div className={styles.test_content_third_content_3_title}>
+                                                                    Կարճ պատասխանով առաջադրանքներ
+                                                                </div>
+                                                                :
+                                                                <div>
+                                                                </div>
+                                                        } */}
+                                                                <div className={styles.test_content_third_content_4_1_2}>
+                                                                    <div className={styles.test_content_third_content_4_1_2_1}>
+                                                                        <div className={styles.test_content_third_content_4_1_2_1_1_sec}>
+                                                                            {/* <div className={styles.test_content_third_content_4_1_2_1_1_1}></div> */}
+                                                                            <div className={styles.test_content_third_content_4_1_2_1_1_1_1_sec}>
+                                                                                A
+                                                                            </div>
+                                                                            <div className={styles.test_content_third_content_4_1_2_1_1_1_1_sec}>
+                                                                                B
+                                                                            </div>
+                                                                            <div className={styles.test_content_third_content_4_1_2_1_1_1_1_sec}>
+                                                                                C
+                                                                            </div>
+                                                                            <div className={styles.test_content_third_content_4_1_2_1_1_1_1_sec}>
+                                                                                D
+                                                                            </div>
+                                                                        </div>
+                                                                        <div className={styles.test_content_third_content_4_1_2_1_2}>
 
-                                        </div>
 
-                                    </div>
-                                </div>
-                            </div> */}
+                                                                            {
+                                                                                [...new Array(Number(val.countValue))].map((va1l, ind1) => {
+
+                                                                                    if (!isNinethLoopEnd && ind1 > lastNinethIndex || ind === 0 && ind1 === 0) {
+                                                                                        if (ind1 % 3 === 0 && ind1 !== 0) {
+                                                                                            isNinethLoopEnd = true
+                                                                                            lastNinethIndex = ind1
+                                                                                            return null
+                                                                                        } else {
+                                                                                            return (
+                                                                                                <div key={ind} className={styles.test_content_third_content_4_1_1}>
+
+                                                                                                    <div className={styles.test_content_third_content_6_1_1_2_1_1_1}>
+                                                                                                        <div className={styles.test_content_third_content_4_1_1_2_1_thrid}>
+                                                                                                            <div className={styles.test_content_third_content_4_1_1_2_1_thrid_item}>
+                                                                                                                <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
+                                                                                                            </div>
+                                                                                                            <div className={styles.test_content_third_content_4_1_1_2_1_thrid_item}>
+                                                                                                                <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                    <div className={styles.test_content_third_content_4_1_1_2}>
+                                                                                                        <div className={styles.test_content_third_content_4_1_1_2_1_thrid_ittm}>
+                                                                                                            <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
+                                                                                                        </div>
+                                                                                                        <div className={styles.test_content_third_content_4_1_1_2_1_thrid_ittm}>
+                                                                                                            <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
+                                                                                                        </div>
+                                                                                                        <div className={styles.test_content_third_content_4_1_1_2_1_thrid_ittm}>
+                                                                                                            <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
+                                                                                                        </div>
+                                                                                                        <div className={styles.test_content_third_content_4_1_1_2_1_thrid_ittm}>
+                                                                                                            <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            )
+                                                                                        }
+                                                                                    } else if (ind1 === lastNinethIndex) {
+                                                                                        return (
+                                                                                            (
+                                                                                                <div key={ind} className={styles.test_content_third_content_4_1_1}>
+
+                                                                                                    <div className={styles.test_content_third_content_6_1_1_2_1_1_1}>
+                                                                                                        <div className={styles.test_content_third_content_4_1_1_2_1_thrid}>
+                                                                                                            <div className={styles.test_content_third_content_4_1_1_2_1_thrid_item}>
+                                                                                                                <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
+                                                                                                            </div>
+                                                                                                            <div className={styles.test_content_third_content_4_1_1_2_1_thrid_item}>
+                                                                                                                <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                    <div className={styles.test_content_third_content_4_1_1_2}>
+                                                                                                        <div className={styles.test_content_third_content_4_1_1_2_1_thrid_ittm}>
+                                                                                                            <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
+                                                                                                        </div>
+                                                                                                        <div className={styles.test_content_third_content_4_1_1_2_1_thrid_ittm}>
+                                                                                                            <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
+                                                                                                        </div>
+                                                                                                        <div className={styles.test_content_third_content_4_1_1_2_1_thrid_ittm}>
+                                                                                                            <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
+                                                                                                        </div>
+                                                                                                        <div className={styles.test_content_third_content_4_1_1_2_1_thrid_ittm}>
+                                                                                                            <input type="text" name='short1' maxLength={1} className={styles.txtinp} />
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            )
+                                                                                        )
+                                                                                    }
+                                                                                })
+                                                                            }
+
+                                                                        </div>
+
+                                                                    </div>
+
+                                                                </div>
+
+                                                            </div>
+                                                        )
+                                                    })
+                                                )
+                                            }
+                                        })
+                                    }
+
 
                                 </div>
                             </div>

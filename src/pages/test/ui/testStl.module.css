@@ -71,3 +71,95 @@
     background-color: black;
     color: #fbd7db;
 }
+
+.test_content_in_items {
+    margin-bottom: 1em;
+}
+
+.test_content_in_items_1 {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: .5em;
+}
+
+.test_content_in_items_1_1 {
+    font-family: 'Noto Sans Armenian', sans-serif;
+    font-weight: 700;
+    margin-bottom: .3em;
+    font-size: .7em;
+}
+
+.test_content_in_items_1_2 input {
+    font-family: 'Noto Sans Armenian', sans-serif;
+    font-weight: 700;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    border-bottom: 1px solid black;
+}
+
+.test_content_inp_content_in_items,
+.test_content_inp_content_in_items_im {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.test_content_inp_content_in_items_im {
+    margin-bottom: .5em;
+    width: 100%;
+    background-color: rgba(255, 255, 255, .6);
+}
+
+.test_content_in_items_1_2_b input {
+    font-family: 'Noto Sans Armenian', sans-serif;
+    font-weight: 700;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    border-bottom: 1px solid black;
+    text-align: center;
+}
+
+.test_content_inp_content_in_items_btn button {
+    font-family: 'Noto Sans Armenian', sans-serif;
+    padding: .3em;
+    transition: .3s ease-in-out;
+    font-weight: 700;
+    cursor: pointer;
+    border: 1px solid black;
+    background-color: white;
+    color: black;
+    margin-bottom: 1em;
+}
+
+.test_content_inp_content_in_items_btn button:hover {
+    background-color: black;
+    color: white;
+}
+
+.test_content_inp_content_in_items_results_content_items {
+    font-family: 'Noto Sans Armenian', sans-serif;
+    font-weight: 400;
+    font-size: .9em;
+}
+
+.test_content_inp_content_in_items_sec_btn button {
+    font-family: 'Noto Sans Armenian', sans-serif;
+    padding: .3em;
+    transition: .3s ease-in-out;
+    font-weight: 700;
+    cursor: pointer;
+    border: 1px solid white;
+    background-color: black;
+    color: white;
+    margin-bottom: 1em;
+}
+
+.test_content_inp_content_in_items_sec_btn button:hover {
+    background-color: white;
+    color: black;
+}
